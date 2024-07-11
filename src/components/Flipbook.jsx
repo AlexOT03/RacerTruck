@@ -1,60 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HTMLFlipBook from 'react-pageflip';
+import { Document, Page, pdfjs } from 'react-pdf';
+import pdf from '../files/test.pdf';
 
 
-const PageCover = React.forwardRef((props, ref) => {
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
+const Pages = React.forwardRef((props, ref) => {
     return (
-      <div className="page page-cover h-full w-auto bg-white" ref={ref} data-density="hard">
-        <div className="page-content">
-          <h2>{props.children}</h2>
-        </div>
-      </div>
-    );
-});
-
-const Page = React.forwardRef((props, ref) => {
-    return (
-        <div className="page" ref={ref}>
-            <div className='page-content'>
-                {props.children}
-                <div className="page-footer">{props.number + 1}</div>
-            </div>
+        <div className="demoPage" ref={ref} >
+            <p>{props.children}</p>
+            <p>Page number: {props.number}</p>
         </div>
     );
 });
 
-function Flipbook(props) {
-    const imagePaths = [
-        props.path + '0001.jpg',
-        props.path + '0002.jpg',
-        props.path + '0003.jpg',
-        props.path + '0004.jpg',
-        props.path + '0005.jpg',
-        props.path + '0006.jpg',
-        props.path + '0007.jpg',
-        props.path + '0008.jpg',
-        props.path + '0009.jpg',
-        props.path + '0010.jpg',
-        props.path + '0011.jpg',
-    ];
+Pages.displayName = 'Pages';
 
-    const pages = imagePaths.map((path, index) => (
-        <Page key={index} number={index + 1}>
-            <img className='h-full' src={path} alt={`Page ${index + 1}`} />
-        </Page>
-    ));
+function Flipbook() {
+
+    const [numPages, setNumPages] = useState();
+
+    function onDocumentLoadSuccess({ numPages }) {
+        setNumPages(numPages);
+    }
 
     return (
-        <HTMLFlipBook
-        width={385} 
-        height={500} 
-        size="stretch"
-        maxShadowOpacity={0.5}
-        showCover={true}
-        mobileScrollSupport={true}>
-        {pages}
-        <PageCover>Final</PageCover>
-    </HTMLFlipBook>
+        <div className='h-screen w-screen p-0 m-0 flex flex-col justify-center items-center bg-gray-900 overflow-hidden'>
+            <h1 className='text-3xl text-white text-center font-bold p-5'>Magazine</h1>
+            <HTMLFlipBook width={460} height={600} maxShadowOpacity={0.4}>
+                {
+                    [...Array(numPages).keys()].map((pNum) => (
+                        <Pages key={pNum} number={pNum + 1}>
+                            <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+                                <Page pageNumber={pNum} width={400} renderAnnotationLayer={false} renderTextLayer={false} />
+                            </Document>
+                        </Pages>
+                    ))
+                }
+            </HTMLFlipBook>
+        </div>
     );
 }
 
