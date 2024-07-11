@@ -1,10 +1,24 @@
 import React from 'react';
 import HTMLFlipBook from 'react-pageflip';
 
+
+const PageCover = React.forwardRef((props, ref) => {
+    return (
+      <div className="page page-cover h-full w-auto bg-white" ref={ref} data-density="hard">
+        <div className="page-content">
+          <h2>{props.children}</h2>
+        </div>
+      </div>
+    );
+});
+
 const Page = React.forwardRef((props, ref) => {
     return (
-        <div className="demoPage" ref={ref}>
-            {props.children}
+        <div className="page" ref={ref}>
+            <div className='page-content'>
+                {props.children}
+                <div className="page-footer">{props.number + 1}</div>
+            </div>
         </div>
     );
 });
@@ -31,9 +45,16 @@ function Flipbook(props) {
     ));
 
     return (
-        <HTMLFlipBook width={385} height={500} showCover={true} mobileScrollSupport={false}>
-            {pages}
-        </HTMLFlipBook>
+        <HTMLFlipBook
+        width={385} 
+        height={500} 
+        size="stretch"
+        maxShadowOpacity={0.5}
+        showCover={true}
+        mobileScrollSupport={true}>
+        {pages}
+        <PageCover>Final</PageCover>
+    </HTMLFlipBook>
     );
 }
 

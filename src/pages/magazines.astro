@@ -6,6 +6,8 @@ import Flipbook from '../components/Flipbook.jsx';
 <Layout title="Racer Truck Magazine">
     <main class="flex flex-col items-center justify-center">
         <h1 class="text-white">Racer Truck Magazine</h1>
-        <Flipbook path="/public/pdf-test/test_page-" client:load/>
+        <div class="h-full w-full p-10 overflow-hidden">
+            <Flipbook path="/public/pdf-test/test_page-" client:load/>
+        </div>
     </main>
 </Layout>
