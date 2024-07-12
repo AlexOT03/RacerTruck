@@ -3,16 +3,17 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../layouts/Nav.astro';
 import Footer from '../layouts/Footer.astro';
 import Card from '../components/Card.astro';
+import Flipbook from '../components/Flipbook.jsx';
 ---
 
 <Layout title="Welcome to Astro.">
-	<main>
+	<main class="bg-neutral-50">
 		<header>	
 			<Nav title='RacerTruck' />	  
 		</header>
 
 		<section id="magazines">
-
+			<Flipbook client:load/>
 		</section>
 
 		<section id="about">
