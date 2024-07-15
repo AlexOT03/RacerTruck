@@ -1,5 +1,10 @@
 import React from 'react';
 import HTMLFlipBook from 'react-pageflip';
+import { useTranslations } from '../i18n/utils';
+
+var lang = window.location.pathname.split('/')[1];
+if (!lang || lang !== 'es') lang = 'en';
+const t = useTranslations(lang);
 
 
 const PageCover = React.forwardRef((props, ref) => {
@@ -15,14 +20,12 @@ const PageCover = React.forwardRef((props, ref) => {
 const Page = React.forwardRef((props, ref) => {
     return (
         <div className="page bg-white" ref={ref} >
-            <div className='page-content'>
+            <div className='page-content flex justify-center items-center'>
                 {props.children}
             </div>
         </div>
     );
 });
-
-
 
 function Flipbook() {
 
@@ -42,16 +45,15 @@ function Flipbook() {
 
     const pages = imagePaths.map((path, index) => (
         <Page key={index}>
-            <img src={path} alt={`Page ${index + 1}`} />
+            <img src={path} alt={`Page ${index + 1}`} className="object-contain h-full w-full" />
         </Page>
     ));
 
     return (
-        <div className='h-screen w-auto p-0 m-0 flex flex-col justify-center items-center overflow-hidden'>
-            <h1 className='text-3xl text-center font-bold p-5'>Name of Magazine</h1>
+        <div className='h-full w-full p-5 flex flex-col justify-center items-center overflow-hidden'>
+            <h1 className='text-3xl text-center font-bold pb-5'>{t('flipbook.title')}</h1>
             <HTMLFlipBook width={460} height={600} maxShadowOpacity={0.3} showCover={true}>
                 {pages}
-                <PageCover>Cover</PageCover>
             </HTMLFlipBook>
         </div>
     );

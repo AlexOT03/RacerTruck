@@ -1,8 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Flipbook from '../components/Flipbook.jsx';
+import PdfDist from '../components/PdfDist';
+
+import pdf_path from '/pdf/all-conditional.pdf';
 ---
 
 <Layout title="Racer Truck Magazine">
-    <Flipbook client:load/>
+    <PdfDist pdfUrl={pdf_path} client:only="react"/>
 </Layout>

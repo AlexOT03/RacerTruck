@@ -12,6 +12,7 @@ export const languages = {
       'nav.about': 'Acerca de',
       'nav.contact': 'Contacto',
       'lang.change': 'Cambiar a ',
+      'flipbook.title': 'Titulo de la revista',
     },
     en: {
       'nav.home': 'Home',
@@ -19,6 +20,7 @@ export const languages = {
       'nav.about': 'About',
       'nav.contact': 'Contact',
       'lang.change': 'Change to ',
+      'flipbook.title': 'Title of the Magazine',
     },
   } as const;
 
