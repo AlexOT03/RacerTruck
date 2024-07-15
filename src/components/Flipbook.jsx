@@ -9,25 +9,18 @@ var lang = window.location.pathname.split('/')[1];
 if (!lang || lang !== 'es') lang = 'en';
 const t = useTranslations(lang);
 
+
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
     import.meta.url,
   ).toString();
 
-const PageCover = React.forwardRef((props, ref) => {
-    return (
-        <div className="page page-cover bg-white" ref={ref} data-density="hard">
-            <div className="page-content flex flex-col justify-center items-center text-center">
-                <h2>{props.children}</h2>
-            </div>
-        </div>
-    );
-});
 
 const Pages = React.forwardRef((props, ref) => {
+    const ID = `page-${props.number}`;
     return (
-        <div className="page" ref={ref} >
-            <p>{props.children}</p>
+        <div className="page" ref={ref} id={ID} >
+            <div>{props.children}</div>
         </div>
     );
 });

@@ -13,6 +13,11 @@ export const languages = {
       'nav.contact': 'Contacto',
       'lang.change': 'Cambiar a ',
       'flipbook.title': 'Titulo de la revista',
+      'footer.follow': 'Síguenos en',
+      'footer.legal': 'Legal',
+      'footer.legal.privacy': 'Privacidad',
+      'footer.legal.terms': 'Términos y condiciones',
+      'footer.copyright': 'Todos los derechos reservados.'
     },
     en: {
       'nav.home': 'Home',
@@ -21,6 +26,11 @@ export const languages = {
       'nav.contact': 'Contact',
       'lang.change': 'Change to ',
       'flipbook.title': 'Title of the Magazine',
+      'footer.follow': 'Follow us on',
+      'footer.legal': 'Legal',
+      'footer.legal.privacy': 'Privacy',
+      'footer.legal.terms': 'Terms & Conditions',
+      'footer.copyright': 'All Rights Reserved.'
     },
   } as const;
 
