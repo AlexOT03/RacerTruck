@@ -1,0 +1,14 @@
+---
+import { languages } from '../i18n/ui';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+{
+  Object.entries(languages).map(([langPrefix, label]) => {
+    if (langPrefix === lang) return
+    return (<a href={translatePath('/', langPrefix)} class="inline-flex items-center font-medium justify-center px-4 py-2 text-sm text-white rounded-lg cursor-pointer hover:bg-red-900 hover:text-yellow-300">{t('lang.change')}{label}</a>)
+  })
+}

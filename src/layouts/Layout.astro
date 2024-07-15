@@ -4,10 +4,13 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+const { currentLocale } = Astro;
+const lang = currentLocale
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />

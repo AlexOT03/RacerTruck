@@ -3,6 +3,7 @@
         "astrojs",
         "cloudflare",
         "Flipbook",
+        "nowrap",
         "pageflip"
     ]
 }

@@ -48,7 +48,7 @@ function Flipbook() {
 
     return (
         <div className='h-screen w-auto p-0 m-0 flex flex-col justify-center items-center overflow-hidden'>
-            <h1 className='text-3xl text-center font-bold p-5'>Magazine</h1>
+            <h1 className='text-3xl text-center font-bold p-5'>Name of Magazine</h1>
             <HTMLFlipBook width={460} height={600} maxShadowOpacity={0.3} showCover={true}>
                 {pages}
                 <PageCover>Cover</PageCover>
