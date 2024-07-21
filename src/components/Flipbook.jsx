@@ -1,55 +1,69 @@
-import React from 'react'
-import HTMLFlipBook from 'react-pageflip';
-import { useState } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
-import pdf from '/pdf/all-conditional.pdf';
-import { useTranslations } from '../i18n/utils';
+import React from "react";
+import HTMLFlipBook from "react-pageflip";
+import { useState } from "react";
+import { Document, Page, pdfjs } from "react-pdf";
+// import pdf from "/pdf/all-conditional.pdf";
+import pdf from "/pdf/SMPLANTAS.pdf";
+import { useTranslations } from "../i18n/utils";
 
-var lang = window.location.pathname.split('/')[1];
-if (!lang || lang !== 'es') lang = 'en';
+var lang = window.location.pathname.split("/")[1];
+if (!lang || lang !== "es") lang = "en";
 const t = useTranslations(lang);
 
-
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.min.mjs',
-    import.meta.url,
-  ).toString();
-
+	"pdfjs-dist/build/pdf.worker.min.mjs",
+	import.meta.url
+).toString();
 
 const Pages = React.forwardRef((props, ref) => {
-    const ID = `page-${props.number}`;
-    return (
-        <div className="page" ref={ref} id={ID} >
-            <div>{props.children}</div>
-        </div>
-    );
+	return (
+		<div className="demoPage" ref={ref}>
+			{props.children}
+		</div>
+	);
 });
 
-Pages.displayName = 'Pages';
+function FlipBook() {
 
-function Flipbook() {
+	const [numPages, setNumPages] = useState(null);
 
-    const [numPages, setNumPages] = useState();
+	const onDocumentLoadSuccess = ({ numPages }) => {
+		setNumPages(numPages);
+	};
 
-    function onDocumentLoadSuccess({ numPages }) {
-        setNumPages(numPages);
-    }
-    return (
-        <div className='h-full w-full p-5 flex flex-col justify-center items-center overflow-hidden'>
-            <h1 className='text-3xl text-center font-bold pb-5'>{t('flipbook.title')}</h1>
-            <HTMLFlipBook width={460} height={600} maxShadowOpacity={0.3} showCover={true}>
-                {
-                    [...Array(numPages).keys()].map((pNum) => (
-                        <Pages key={pNum} number={pNum + 1}>
-                            <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
-                                <Page pageNumber={pNum+1} width={460} renderAnnotationLayer={false} renderTextLayer={false} />
-                            </Document>
-                        </Pages>
-                    ))
-                }
+    // pagina grande
+    // width 595
+    // height 872
+    // ---------------
+    // pagina mediana
+    // width 485
+    // height 711
+    // ---------------
+    // pagina pequeña
+    // width 395
+    // height 579
+
+	return (
+        <section id="magazine" className="h-fit flex flex-col justify-end items-center md:justify-center scroll-mx-2 overflow-hidden pb-20">
+            <div className="text-4xl font-bold p-5">
+                <h1>{t('flipbook.title')}</h1>
+            </div>
+            <HTMLFlipBook width={595} height={872} showCover={true} maxShadowOpacity={0.4}>
+                {[...Array(numPages).keys()].map((n) => (
+                    <Pages number={`${n + 1}`}>
+                        <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+                            <Page
+                                pageNumber={n + 1}
+                                width={595}
+                                renderAnnotationLayer={false} 
+                                renderTextLayer={false}
+                            />
+                        </Document>
+                    </Pages>
+                ))}
             </HTMLFlipBook>
-        </div>
-    );
+        </section>
+	);
 }
 
-export default Flipbook
+export default FlipBook;

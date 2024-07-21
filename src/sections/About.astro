@@ -1,4 +1,8 @@
-<section class="flex flex-col justify-center items-center pt-4 pb-4 px-24" id="about">
+---
+const { class: className, ...rest } = Astro.props;
+---
+
+<section class:list={['child-component', className]} {...rest} class="flex flex-col justify-center items-center px-20 " id="about">
 			
     <div class="p-8 bg-white rounded-lg shadow">
         <p class="text-3xl font-bold text-center text-gray-800">
