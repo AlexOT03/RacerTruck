@@ -1,190 +1,130 @@
 ---
 const { class: className, ...rest } = Astro.props;
+import Facebook from '../components/icons/Facebook.astro';
+import LinkedIn from '../components/icons/LinkedIn.astro';
+import Twitter from '../components/icons/Twitter.astro';
+import GitHub from '../components/icons/GitHub.astro';
+// this 3 lines of code are necessary to translate the elements that we need to translate i others languages
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section class:list={['child-component', className]} {...rest} class="flex flex-col justify-center items-center px-20 " id="about">
 			
     <div class="p-8 bg-white rounded-lg shadow">
         <p class="text-3xl font-bold text-center text-gray-800">
-            Professional team
+            {t('about.title')}
         </p>
         <p class="mb-12 text-xl font-normal text-center text-gray-500">
-            Meat the best team in wolrd
+            {t('about.subtitle')}
         </p>
         <div class="flex flex-col items-center md:flex-row justify evenly">
             <div class="p-4">
                 <div class="mb-4 text-center opacity-90">
-                    <a href="#" class="relative block">
-                        <img alt="profil" src="/images/person/1.jpg" class="mx-auto object-cover rounded-full h-40 w-40 "/>
-                    </a>
+                    <img alt="profil" src="https://media.tenor.com/R9E4h1vKHr8AAAAe/mewing-mew.png" class="mx-auto object-cover rounded-full h-40 w-40 "/>
                 </div>
                 <div class="text-center">
                     <p class="text-2xl text-gray-800">
-                        Patrick Sebastien
+                        Jesus Alejandro Ortiz Trejo
                     </p>
                     <p class="text-xl font-light text-gray-500">
-                        Developpeur
-                    </p>
-                    <p class="max-w-xs py-4 font-light text-gray-500 text-md">
-                        Patrick Sébastien, born November 14, 1953 in Brive-la-Gaillarde, is an imitator.
+                        {t('about.position.developer')}
                     </p>
                 </div>
-                <div class="flex items-center justify-between pt-8 mx-auto text-gray-500 border-t border-gray-200 w-44">
-                    <a href="#">
-                        <svg width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z">
-                            </path>
-                        </svg>
+                <div class="flex items-center justify-between pt-8 mx-auto text-gray-500 w-44">
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <Facebook class="w-6 h-6" />
                     </a>
-                    <a href="#">
-                        <svg width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z">
-                            </path>
-                        </svg>
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <Twitter class="w-6 h-6" />
                     </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792">
-                            <path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z">
-                            </path>
-                        </svg>
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <LinkedIn class="w-6 h-6" />
                     </a>
-                    <a href="#">
-                        <svg width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z">
-                            </path>
-                        </svg>
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <GitHub class="w-6 h-6" />
                     </a>
                 </div>
             </div>
             <div class="p-4">
                 <div class="mb-4 text-center opacity-90">
-                    <a href="#" class="relative block">
-                        <img alt="profil" src="/images/person/1.jpg" class="mx-auto object-cover rounded-full h-40 w-40 "/>
-                    </a>
+                    <img alt="profil" src="https://m.media-amazon.com/images/I/91WN6a6F3RL._AC_UF894,1000_QL80_.jpg" class="mx-auto object-cover rounded-full h-40 w-40 "/>
                 </div>
                 <div class="text-center">
                     <p class="text-2xl text-gray-800">
-                        Patrick Sebastien
+                        Genesis Margarita Baylón Ranero
                     </p>
                     <p class="text-xl font-light text-gray-500">
-                        Developpeur
-                    </p>
-                    <p class="max-w-xs py-4 font-light text-gray-500 text-md">
-                        Patrick Sébastien, born November 14, 1953 in Brive-la-Gaillarde, is an imitator.
+                        {t('about.position.writer')}
                     </p>
                 </div>
-                <div class="flex items-center justify-between pt-8 mx-auto text-gray-500 border-t border-gray-200 w-44">
-                    <a href="#">
-                        <svg width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z">
-                            </path>
-                        </svg>
+                <div class="flex items-center justify-between pt-8 mx-auto text-gray-500 w-44">
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <Facebook class="w-6 h-6" />
                     </a>
-                    <a href="#">
-                        <svg width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z">
-                            </path>
-                        </svg>
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <Twitter class="w-6 h-6" />
                     </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792">
-                            <path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z">
-                            </path>
-                        </svg>
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <LinkedIn class="w-6 h-6" />
                     </a>
-                    <a href="#">
-                        <svg width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z">
-                            </path>
-                        </svg>
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <GitHub class="w-6 h-6" />
                     </a>
                 </div>
             </div>
             <div class="p-4">
                 <div class="mb-4 text-center opacity-90">
-                    <a href="#" class="relative block">
-                        <img alt="profil" src="/images/person/4.jpg" class="mx-auto object-cover rounded-full h-40 w-40 "/>
-                    </a>
+                    <img alt="profil" src="data:image/jpeg;base64,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" class="mx-auto object-cover rounded-full h-40 w-40 "/>
                 </div>
                 <div class="text-center">
-                    <p class="text-2xl text-gray-800 ">
-                        Jean Castux
+                    <p class="text-2xl text-gray-800">
+                        Erick Arturo Gallegos Valenzuela
                     </p>
                     <p class="text-xl font-light text-gray-500">
-                        Founder
-                    </p>
-                    <p class="max-w-xs py-4 font-light text-gray-500 text-md">
-                        Jean Castux is an imitator, humorist, actor, born November 14, 1953 in Pontivy.
+                        {t('about.position.photographer')}
                     </p>
                 </div>
-                <div class="flex items-center justify-between pt-8 mx-auto text-gray-500 border-t border-gray-200 w-44">
-                    <a href="#">
-                        <svg width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z">
-                            </path>
-                        </svg>
+                <div class="flex items-center justify-between pt-8 mx-auto text-gray-500 w-44">
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <Facebook class="w-6 h-6" />
                     </a>
-                    <a href="#">
-                        <svg width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z">
-                            </path>
-                        </svg>
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <Twitter class="w-6 h-6" />
                     </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792">
-                            <path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z">
-                            </path>
-                        </svg>
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <LinkedIn class="w-6 h-6" />
                     </a>
-                    <a href="#">
-                        <svg width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z">
-                            </path>
-                        </svg>
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <GitHub class="w-6 h-6" />
                     </a>
                 </div>
             </div>
             <div class="p-4">
                 <div class="mb-4 text-center opacity-90">
-                    <a href="#" class="relative block">
-                        <img alt="profil" src="/images/person/3.jpg" class="mx-auto object-cover rounded-full h-40 w-40 "/>
-                    </a>
+                    <img alt="profil" src="https://d230k11mo4cmoj.cloudfront.net/s3fs-public/product_sweet_bread_bimbo/Banner-599x481-SITIO-WEB-NITO-1.png?VersionId=4B_C.vXf6KT9yatQ790mAer7fVI54Pkj" class="mx-auto object-cover rounded-full h-40 w-40 "/>
                 </div>
                 <div class="text-center">
-                    <p class="text-2xl text-gray-800 ">
-                        Thierry Halliday
+                    <p class="text-2xl text-gray-800">
+                        Joel Chable Narvaez
                     </p>
                     <p class="text-xl font-light text-gray-500">
-                        CTO
-                    </p>
-                    <p class="max-w-xs py-4 font-light text-gray-500 text-md">
-                        Thierry Halliday, born November 4, 1993 in Saint hilaire de riez, is css specialist.
+                        {t('about.position.editor')}
                     </p>
                 </div>
-                <div class="flex items-center justify-between pt-8 mx-auto text-gray-500 border-t border-gray-200 w-44">
-                    <a href="#">
-                        <svg width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z">
-                            </path>
-                        </svg>
+                <div class="flex items-center justify-between pt-8 mx-auto text-gray-500 w-44">
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <Facebook class="w-6 h-6" />
                     </a>
-                    <a href="#">
-                        <svg width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z">
-                            </path>
-                        </svg>
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <Twitter class="w-6 h-6" />
                     </a>
-                    <a href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792">
-                            <path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z">
-                            </path>
-                        </svg>
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <LinkedIn class="w-6 h-6" />
                     </a>
-                    <a href="#">
-                        <svg width="30" height="30" fill="currentColor" class="text-xl transition-colors duration-200 hover:text-gray-800 dark:hover:text-white" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z">
-                            </path>
-                        </svg>
+                    <a href="#" class="hover:text-gray-900 transition-all hover:scale-110">
+                        <GitHub class="w-6 h-6" />
                     </a>
                 </div>
             </div>

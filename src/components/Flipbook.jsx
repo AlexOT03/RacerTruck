@@ -2,7 +2,7 @@ import React from "react";
 import HTMLFlipBook from "react-pageflip";
 import { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
-import pdf from "/pdf/SMPLANTAS.pdf";
+import pdf from "/pdf/Car-Magazine.pdf";
 import { useTranslations } from "../i18n/utils";
 import Loading from "./Loading";
 
