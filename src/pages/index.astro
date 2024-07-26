@@ -2,8 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../layouts/Header.astro';
 import Footer from '../layouts/Footer.astro';
-import About from '../sections/About.astro';
-import Contact from '../sections/Contact.astro';
+// import About from '../sections/About.astro';
+// import Contact from '../sections/Contact.astro';
 import Flipbook from '../components/Flipbook';
 import Hero from '../sections/Hero.astro';
 ---
@@ -14,8 +14,8 @@ import Hero from '../sections/Hero.astro';
 
 		<Hero />
         <Flipbook client:only="react"/>
-		<About class="pb-20" />
-        <Contact class="pb-20" />
+		<!-- <About class="pb-20" />
+        <Contact class="pb-20" /> -->
 
 		<Footer title='RacerTruck' />	
 	</main>

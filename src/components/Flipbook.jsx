@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import HTMLFlipBook from "react-pageflip";
 import { Document, Page, pdfjs } from "react-pdf";
-import pdf from "/pdf/Red-Modern-Car-Magazine.pdf";
+import pdf from "/pdf/Cold-Wheels-August-2024.pdf";
 import { useTranslations } from "../i18n/utils";
 import Loading from "./Loading";
 
