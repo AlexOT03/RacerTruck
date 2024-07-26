@@ -17,7 +17,7 @@ const info = images.find((img) => img.id === magazine);
 if (!info) return Astro.redirect("/404", 404);
 ---
 
-<Layout title={`RacerTruck | ${info.id}`}>
+<Layout title={`RacerTruck | ${info.title}`}>
 	<main class="bg-neutral-100">
 		<Header title="RacerTruck" />
 
