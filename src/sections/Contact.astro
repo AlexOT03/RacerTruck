@@ -1,38 +1,82 @@
 ---
 const { class: className, ...rest } = Astro.props;
+import Mail from '../components/icons/Mail.astro';
+// this 3 lines of code are necessary to translate the elements that we need to translate i others languages
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<section class:list={['child-component', className]} {...rest} class="flex flex-col justify-center items-center max-w-screen-xl px-4 mx-auto" id="contact">
-			
-    <form class="flex w-full max-w-sm space-x-3">
-        <div class="w-full max-w-2xl px-5 py-10 m-auto mt-10 bg-white rounded-lg shadow dark:bg-gray-800">
-            <div class="mb-6 text-3xl font-light text-center text-gray-800 dark:text-white">
-                Contact us !
+<section
+	class:list={["child-component", className]}
+	{...rest}
+	class="flex flex-col justify-center items-center max-w-screen-xl px-4 mx-auto"
+	id="contact"
+>
+	<div class="p-8 bg-white rounded-lg shadow w-full">
+		<h5
+			id="drawer-label"
+			class="flex items-center justify-center mb-6  text-3xl font-bold text-center text-gray-800"
+		>
+         Contact us
+		</h5>
+		<form class="mb-6">
+            <div class="mb-6">
+                <p>Your opinion is very important to us. To contact us, please fill out the following form.</p>
             </div>
-            <div class="grid max-w-xl grid-cols-2 gap-4 m-auto">
-                <div class="col-span-2 lg:col-span-1">
-                    <div class=" relative ">
-                        <input type="text" id="contact-form-name" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Name"/>
-                        </div>
-                    </div>
-                    <div class="col-span-2 lg:col-span-1">
-                        <div class=" relative ">
-                            <input type="text" id="contact-form-email" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="email"/>
-                            </div>
-                        </div>
-                        <div class="col-span-2">
-                            <label class="text-gray-700" for="name">
-                                <textarea class="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" id="comment" placeholder="Enter your comment" name="comment" rows="5" cols="40">
-                                </textarea>
-                            </label>
-                        </div>
-                        <div class="col-span-2 text-right">
-                            <button type="submit" class="py-2 px-4  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                                Send
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-    
-            </section>
+			<div class="grid grid-cols-2 gap-3">
+				<div class="mb-6">
+					<label
+						for="email"
+						class="block mb-2 text-sm font-medium text-gray-900"
+						>Your email</label
+					>
+					<input
+						type="email"
+						id="email"
+						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5     "
+						placeholder="name@company.com"
+						required
+					/>
+				</div>
+				<div class="mb-6">
+					<label
+						for="subject"
+						class="block mb-2 text-sm font-medium text-gray-900"
+						>Subject</label
+					>
+					<input
+						type="text"
+						id="subject"
+						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5     "
+						placeholder="Let us know how we can help you"
+						required
+					/>
+				</div>
+			</div>
+			<div class="mb-6">
+				<label
+					for="message"
+					class="block mb-2 text-sm font-medium text-gray-900"
+					>Your message</label
+				>
+				<textarea
+					id="message"
+					rows="4"
+					class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500     "
+					placeholder="Your message..."></textarea>
+			</div>
+			<button
+				type="submit"
+				class="text-white bg-blue-700 hover:bg-blue-800 w-full focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2   focus:outline-none "
+				>Send message</button
+			>
+		</form>
+		<p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+			<a href="#" class="hover:underline">racertruck@gmail.com</a>
+		</p>
+		<p class="text-sm text-gray-500 dark:text-gray-400">
+			<a href="#" class="hover:underline">+52 993 431 512</a>
+		</p>
+	</div>
+</section>
