@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../layouts/Footer.astro';
+import Header from '../layouts/Header.astro';
+// this 3 lines of code are necessary to translate the elements that we need to translate i others languages
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title='RacerTruck | Privacy Policy'>
+    <main class="bg-neutral-100">
+        <Header title='RacerTruck' />
+        <section class="container mx-auto p-4">
+            <h1 class="text-4xl font-bold mb-4">{t('privacy.title')}</h1>
+            <p class="mb-4">{t('privacy.paragraph.one')}</p>
+            <p class="mb-4">{t('privacy.paragraph.two')}</p>
+            <ul class="list-disc ml-6">
+                <li class="mb-2">{t('privacy.paragraph.two.point.one')}</li>
+                <li class="mb-2">{t('privacy.paragraph.two.point.two')}</li>
+            </ul>
+            <p class="mb-4">{t('privacy.paragraph.three')}</p>
+            <ul class="list-disc ml-6">
+                <li class="mb-2">{t('privacy.paragraph.three.point.one')}</li>
+                <li class="mb-2">{t('privacy.paragraph.three.point.two')}</li>
+            </ul>
+            <p class="mt-4">{t('privacy.paragraph.four')}</p>
+            <p class="mt-4">{t('privacy.paragraph.five')} <a href="#">{t('privacy.paragraph.five.link')}</a>.</p>
+        </section>
+        <Footer title='RacerTruck' />
+    </main>
+</Layout>

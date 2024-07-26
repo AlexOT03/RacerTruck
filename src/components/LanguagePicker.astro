@@ -7,13 +7,13 @@ import FlagUsa from '../components/icons/flag_usa.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
-
 ---
 {
   Object.entries(languages).map(([langPrefix, label]) => {
     if (langPrefix === lang) return
     return (
       <a href={translatePath('/', langPrefix)} class="inline-flex items-center font-medium justify-center p-3 text-sm text-white rounded-lg cursor-pointer hover:bg-red-900">
+        {t('lang.change')} &nbsp;
         {langPrefix === 'es' ? (
           <FlagMexico class="w-5 h-5" />
         ) : (

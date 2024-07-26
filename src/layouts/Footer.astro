@@ -8,9 +8,11 @@ import Discord from '../components/icons/Discord.astro';
 import Facebook from '../components/icons/Facebook.astro';
 import GitHub from '../components/icons/GitHub.astro';
 // this 3 lines of code are necessary to translate the elements that we need to translate i others languages
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+// this is only used for the url path redirection
+const translatePath = useTranslatedPath(lang);
 ---
 
 <footer class="bg-black">
@@ -38,10 +40,10 @@ const t = useTranslations(lang);
                   <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">{t('footer.legal')}</h2>
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
                       <li class="mb-4">
-                          <a href="#" class="hover:underline">{t('footer.legal.privacy')}</a>
+                          <a href={translatePath('/privacy')} class="hover:underline">{t('footer.legal.privacy')}</a>
                       </li>
                       <li>
-                          <a href="#" class="hover:underline">{t('footer.legal.terms')}</a>
+                          <a href={translatePath('/terms')} class="hover:underline">{t('footer.legal.terms')}</a>
                       </li>
                   </ul>
               </div>

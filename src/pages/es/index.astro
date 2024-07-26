@@ -3,25 +3,22 @@ import Flipbook from "../../components/Flipbook";
 import Footer from "../../layouts/Footer.astro";
 import Header from "../../layouts/Header.astro";
 import Layout from "../../layouts/Layout.astro";
+import About from "../../sections/About.astro";
+import Contact from "../../sections/Contact.astro";
+import Hero from "../../sections/Hero.astro";
 
 
 ---
 
 <Layout title="RacerTruck the Magazine of cars and his technology">
 	<main class="bg-neutral-100">
-		<Header title='RacerTruck' />	  
+		<Header title='RacerTruck' />
 
-		<section id="magazines">
-			<Flipbook client:only="react"/>
-		</section>
+		<Hero />
+        <Flipbook client:only="react"/>
+		<About class="pb-20" />
+        <Contact class="pb-20" />
 
-		<section id="about">
-
-		</section>
-		
-		<section id="contact">
-
-		</section>	
 		<Footer title='RacerTruck' />	
 	</main>
 </Layout>

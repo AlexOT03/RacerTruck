@@ -20,7 +20,7 @@ const LoadingScreen = () => {
 	return (
 		<div
 			className={`absolute w-full h-full flex flex-col items-center justify-center bg-neutral-100 z-50 transition-colors duration-1000 ${
-				loading ? "animate-fade-out" : "animate-blurred-fade-in"
+				loading ? "animate-fade-out" : "animate-fade-in"
 			}`}
 		>
 			<span className="loading"></span>

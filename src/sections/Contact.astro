@@ -2,7 +2,7 @@
 const { class: className, ...rest } = Astro.props;
 ---
 
-<section class:list={['child-component', className]} {...rest} class="flex flex-col justify-center items-center px-20" id="contact">
+<section class:list={['child-component', className]} {...rest} class="flex flex-col justify-center items-center max-w-screen-xl px-4 mx-auto" id="contact">
 			
     <form class="flex w-full max-w-sm space-x-3">
         <div class="w-full max-w-2xl px-5 py-10 m-auto mt-10 bg-white rounded-lg shadow dark:bg-gray-800">

@@ -1,0 +1,27 @@
+---
+import Footer from '../../layouts/Footer.astro';
+import Header from '../../layouts/Header.astro';
+import Layout from '../../layouts/Layout.astro';
+// this 3 lines of code are necessary to translate the elements that we need to translate i others languages
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title='RacerTruck | Terms & Conditions'>
+    <main class="bg-neutral-100">
+        <Header title='RacerTruck' />
+        <section class=" container mx-auto p-4">
+            <h1 class="text-4xl font-bold mb-4">{t('terms.title')}</h1>
+        <p class="mb-4">{t('terms.paragraph.one')}</p>
+        <ol class="list-decimal ml-6">
+            <li class="mb-2">{t('terms.paragraph.one.point.one')}</li>
+            <li class="mb-2">{t('terms.paragraph.one.point.two')}</li>
+            <li class="mb-2">{t('terms.paragraph.one.point.three')}</li>
+            <li class="mb-2">{t('terms.paragraph.one.point.four')}</li>
+        </ol>
+        <p class="mt-4">{t('terms.paragraph.two')}</p>
+        </section>
+        <Footer title='RacerTruck' />
+    </main>
+</Layout>
