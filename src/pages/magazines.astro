@@ -1,11 +1,121 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Flipbook from '../components/Flipbook.jsx';
 import PdfDist from '../components/PdfDist';
-
+import Header from '../layouts/Header.astro';
+import Footer from '../layouts/Footer.astro';
+import { Image } from "astro:assets";
+import { images } from '../sections/imagen-data';
 import pdf_path from '/pdf/all-conditional.pdf';
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout title="Racer Truck Magazine">
     <PdfDist pdfUrl={pdf_path} client:only="react"/>
+    <main class="bg-neutral-100">
+		<Header title='RacerTruck' />
+
+        <div class="tittle-magazine">
+            <h1 class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-6xl ">
+				Magazines 2024
+			</h1>   
+        </div>
+
+        <div class="catalog">
+            {images.map((img, index) => (
+            <div class="magazine-container" key={index}>
+                <a href="#magazine">
+                <Image
+                    class="magazine"
+                    src={img.src}
+                    width={300}
+                    height={400}
+                    alt={img.alt}
+                />
+                </a>
+                <p class="magazine-title">{img.title}</p>
+            </div>
+
+            ))}
+        </div>
+
+		<Footer title='RacerTruck' />	
+	</main>
+    
 </Layout>
+
+<style>
+    .catalog {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 60px; 
+        justify-content: center;
+        padding-top: 40px;
+        padding-bottom: 70px;
+    }
+
+    .tittle-magazine{
+        text-align: center !important;
+        padding: 30px;
+    }
+
+    .magazine-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .magazine {
+        transition: box-shadow 0.1s, transform 0.1s;
+        max-width: 100%;
+    }
+
+    .magazine:hover {
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+    }
+
+    .magazine.zoomed {
+        transform: scale(1.2);
+        transition: transform 0.2s;
+    }
+
+    .magazine-title {
+        margin-top: 10px;
+        font-size: 1rem;
+        color: #333;
+    }
+</style>
+
+<script>
+    document.querySelectorAll('.magazine').forEach(el => {
+        el.addEventListener('mousemove', (evt) => {
+            const { offsetWidth: width, offsetHeight: height } = el;
+            const { layerX, layerY } = evt;
+
+            const yRotation = ((layerX - width / 2) / width) * 20;
+            const xRotation = ((layerY - height / 2) / height) * 20;
+
+            el.style.transform = `
+                perspective(500px)
+                scale(1.1)
+                rotateX(${xRotation}deg)
+                rotateY(${yRotation}deg)
+            `;
+        });
+
+        el.addEventListener('mouseout', () => {
+            el.style.transform = `
+                perspective(500px)
+                scale(1)
+                rotateX(0)
+                rotateY(0)
+            `;
+        });
+
+        el.addEventListener('click', () => {
+            el.classList.toggle('zoomed');
+        });
+    });
+</script>
