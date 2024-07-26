@@ -1,31 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PdfDist from '../components/PdfDist';
 import Header from '../layouts/Header.astro';
 import Footer from '../layouts/Footer.astro';
 import { Image } from "astro:assets";
-import { images } from '../sections/imagen-data';
-import pdf_path from '/pdf/all-conditional.pdf';
+import { images } from '../data/imagen-data'
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title="Racer Truck Magazine">
-    <PdfDist pdfUrl={pdf_path} client:only="react"/>
+<Layout title="RacerTruck | List of Magazine">
     <main class="bg-neutral-100">
 		<Header title='RacerTruck' />
 
-        <div class="tittle-magazine">
+        <div class="text-center mx-auto max-w-screen-xl my-20">
             <h1 class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-6xl ">
-				Magazines 2024
+				{t('magazines.title')} 2024
 			</h1>   
+            <h2 class="mt-1 text-2xl text-gray-700 sm:text-7xl md:text-4xl lg:text-3xl xl:text-2xl">
+                {t('magazines.subtitle')}
+            </h2>
         </div>
 
-        <div class="catalog">
-            {images.map((img, index) => (
-            <div class="magazine-container" key={index}>
-                <a href="#magazine">
+        <div class="flex flex-wrap gap-14 justify-center items-center max-w-screen-xl mx-auto my-20">
+            {images.map((img) => (
+            <div class="flex flex-col justify-center items-center text-center">
+                <a href={`/${img.id}`}>
                 <Image
                     class="magazine"
                     src={img.src}
@@ -34,7 +34,7 @@ const t = useTranslations(lang);
                     alt={img.alt}
                 />
                 </a>
-                <p class="magazine-title">{img.title}</p>
+                <p class="text-center p-7 uppercase text-lg font-bold">{img.date}</p>
             </div>
 
             ))}
@@ -46,27 +46,6 @@ const t = useTranslations(lang);
 </Layout>
 
 <style>
-    .catalog {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 60px; 
-        justify-content: center;
-        padding-top: 40px;
-        padding-bottom: 70px;
-    }
-
-    .tittle-magazine{
-        text-align: center !important;
-        padding: 30px;
-    }
-
-    .magazine-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
     .magazine {
         transition: box-shadow 0.1s, transform 0.1s;
         max-width: 100%;
@@ -74,17 +53,6 @@ const t = useTranslations(lang);
 
     .magazine:hover {
         box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
-    }
-
-    .magazine.zoomed {
-        transform: scale(1.2);
-        transition: transform 0.2s;
-    }
-
-    .magazine-title {
-        margin-top: 10px;
-        font-size: 1rem;
-        color: #333;
     }
 </style>
 
@@ -112,10 +80,6 @@ const t = useTranslations(lang);
                 rotateX(0)
                 rotateY(0)
             `;
-        });
-
-        el.addEventListener('click', () => {
-            el.classList.toggle('zoomed');
         });
     });
 </script>

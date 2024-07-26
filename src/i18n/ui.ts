@@ -7,6 +7,11 @@ export const languages = {
   
   export const ui = {
     es: {
+      'page.month': 'Mes',
+      'page.author': 'Autor',
+      'alert.description': 'Sin descripción',
+      'button.read': 'Leer ahora',
+      'button.unavailable': 'No disponible',
       'nav.home': 'Inicio',
       'nav.magazines': 'Revistas',
       'nav.about': 'Acerca de',
@@ -19,6 +24,8 @@ export const languages = {
       'hero.paragraph.one': 'Esta revista contiene las novedades del mundo automotor. Conoce los cambios más importantes en el desarrollo de automóviles, así como las tendencias y las innovaciones en el mercado.',
       'hero.paragraph.two': 'Conoce las ultimas noticias sobre las competiciones, los lanzamientos y las tendencias en el mercado de automóviles. Descubra las últimas tendencias y las últimas noticias sobre el desarrollo de automóviles.',
       'hero.paragraph.three': 'Descubra donde es que los coches mas exigentes y tecnológicos se prueban al detalles y como estos lugares se transforman en lugares de gran importancia en el desarrollo de automóviles.',
+      'magazines.title': 'Revistas del',
+      'magazines.subtitle': 'Descubre todas las revistas que hemos creado',
       'about.title': 'Equipo editorial',
       'about.subtitle': 'Conoce al equipo que crea RacerTruck',
       'about.position.editor': 'Editor',
@@ -51,6 +58,11 @@ export const languages = {
       'footer.copyright': 'Todos los derechos reservados.'
     },
     en: {
+      'page.month': 'Month',
+      'page.author': 'Author',
+      'alert.description': 'No description',
+      'button.read': 'Read now',
+      'button.unavailable': 'Unavailable',
       'nav.home': 'Home',
       'nav.magazines': 'Magazines',
       'nav.about': 'About',
@@ -63,6 +75,8 @@ export const languages = {
       'hero.paragraph.one': 'This magazine covers the latest news in the automotive world. Stay up-to-date with the most important developments in the automotive industry, as well as the trends and innovations in the market.',
       'hero.paragraph.two': 'Stay informed about the latest competitions, launches, and trends in the automotive market. Discover the latest trends and news about the development of automobiles.',
       'hero.paragraph.three': 'Discover where the most exciting and technological cars are being developed at the details and how these places are transforming into important locations in the development of automobiles.',
+      'magazines.title': 'Magazines of',
+      'magazines.subtitle': 'Discover all the magazines we have created',
       'about.title': 'Professional team',
       'about.subtitle': 'Learn about the team that creates RacerTruck',
       'about.position.editor': 'Editor',

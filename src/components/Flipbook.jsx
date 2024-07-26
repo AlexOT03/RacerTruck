@@ -49,7 +49,7 @@ function FlipBook() {
         if (e.data === 0) {
             setInitialMargin("ml-[-40%]");
         } else if (e.data === numPages - 1) {
-            setInitialMargin("ml-[50%]");
+            setInitialMargin("ml-[55%]");
         } else {
             setInitialMargin("ml-[7%]");
         }
@@ -61,7 +61,7 @@ function FlipBook() {
             <div className="text-4xl font-bold p-5">
                 <h1>{pdf_name}</h1>
             </div>
-            <div className={`h-full w-full relative transition-all ${initialMargin}`}
+            <div className={`h-full w-full relative transition-all ${initialMargin} duration-200`}
 				onClick={handleFirstPageClick}
 			>
                 <HTMLFlipBook width={595} height={769} showCover={true} flippingTime={800} maxShadowOpacity={0.6} onFlip={handleFlip}>
