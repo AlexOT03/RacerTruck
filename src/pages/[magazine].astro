@@ -18,7 +18,7 @@ if (!info) return Astro.redirect("/404", 404);
 ---
 
 <Layout title={`RacerTruck | ${info.title}`}>
-	<main class="bg-neutral-100">
+	<main>
 		<Header title="RacerTruck" />
 
 		<section class="grid grid-cols-1 md:grid-cols-2 gap-x-12 mt-4 md:mt-20 px-8 max-w-screen-xl mx-auto">
@@ -58,18 +58,10 @@ if (!info) return Astro.redirect("/404", 404);
 					<strong>{t('page.author')}:</strong>
 					<span class="font-semibold text-gray-800">{info.author}</span>
 				</p>
-				{
-					info.id === 'cold-wheels-magazine-8' ? (
-						<button id="read-pdf-btn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 justify-center">
-							<BookRead class="w-5 h-5 mr-2" />
-							{t('button.read')}
-			  			<button/>
-					) : (
-						<button disabled class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 justify-center">
-							{t('button.unavailable')}
-						</button>
-					)
-				}
+				<button id="read-pdf-btn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 justify-center">
+					<BookRead class="w-5 h-5 mr-2" />
+					{t('button.read')}
+				  <button/>
 			</aside>
 		</section>
 		<div id="pdf-container" class="opacity-0 transition-opacity duration-500 h-fit">
@@ -81,7 +73,7 @@ if (!info) return Astro.redirect("/404", 404);
 </Layout>
 
 <script>
-  document.querySelector('#read-pdf-btn').addEventListener('click', () => {
+  window.document.querySelector('#read-pdf-btn').addEventListener('click', () => {
     let pdfContainer = document.querySelector('#pdf-container');
     pdfContainer.classList.add('opacity-100');
   });
