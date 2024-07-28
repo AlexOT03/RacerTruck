@@ -1,8 +1,8 @@
 ---
 import { languages } from '../i18n/ui';
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
-import FlagMexico from '../components/icons/flag_mexico.astro';
-import FlagUsa from '../components/icons/flag_usa.astro';
+import FlagMexico from '../icons/flag_mexico.astro';
+import FlagUsa from '../icons/flag_usa.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

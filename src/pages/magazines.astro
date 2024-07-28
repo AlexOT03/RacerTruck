@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../layouts/Header.astro';
-import Footer from '../layouts/Footer.astro';
+import Header from '../sections/Header.astro';
+import Footer from '../sections/Footer.astro';
 import { Image } from "astro:assets";
 import { images } from '../data/imagen-data'
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
@@ -11,17 +11,17 @@ const t = useTranslations(lang);
 
 <Layout title="RacerTruck | List of Magazine">
     <main>
-        <div class="text-center mx-auto max-w-screen-xl my-20">
+        <section class="text-center mx-auto max-w-screen-xl my-20">
             <h1 class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-6xl ">
 				{t('magazines.title')} 2024
 			</h1>   
             <h2 class="mt-1 text-2xl text-gray-700 sm:text-7xl md:text-4xl lg:text-3xl xl:text-2xl">
                 {t('magazines.subtitle')}
             </h2>
-        </div>
+        </section>
 
-        <div class="flex flex-wrap gap-14 justify-center items-center max-w-screen-xl mx-auto my-20">
-            {images.map((img) => (
+        <section class="flex flex-wrap gap-14 justify-center items-center max-w-screen-xl mx-auto my-20">
+            {images.map((img, index) => (
             <div class="flex flex-col justify-center items-center text-center">
                 <a href={`/${img.id}`}>
                 <Image
@@ -30,15 +30,18 @@ const t = useTranslations(lang);
                     width={300}
                     height={400}
                     alt={img.alt}
+                    loading={
+                        index in [0, 1, 2] ? 'eager' : 'lazy'
+                    }
                 />
                 </a>
                 <p class="text-center p-7 uppercase text-lg font-bold">{img.date}</p>
             </div>
 
             ))}
-        </div>
+        </section>
 
-		<Footer title='RacerTruck' />	
+		<Footer title={t('footer.title')} />
 	</main>
     
 </Layout>
@@ -57,13 +60,14 @@ const t = useTranslations(lang);
 <script>
     document.querySelectorAll('.magazine').forEach(el => {
         el.addEventListener('mousemove', (evt) => {
-            const { offsetWidth: width, offsetHeight: height } = el;
-            const { layerX, layerY } = evt;
+            const element = el as HTMLElement;
+            const { offsetWidth: width, offsetHeight: height } = element;
+            const { offsetX, offsetY } = evt as MouseEvent;
 
-            const yRotation = ((layerX - width / 2) / width) * 20;
-            const xRotation = ((layerY - height / 2) / height) * 20;
+            const yRotation = ((offsetX - width / 2) / width) * 20;
+            const xRotation = ((offsetY - height / 2) / height) * 20;
 
-            el.style.transform = `
+            element.style.transform = `
                 perspective(500px)
                 scale(1.1)
                 rotateX(${xRotation}deg)
@@ -72,7 +76,8 @@ const t = useTranslations(lang);
         });
 
         el.addEventListener('mouseout', () => {
-            el.style.transform = `
+            const element = el as HTMLElement;
+            element.style.transform = `
                 perspective(500px)
                 scale(1)
                 rotateX(0)

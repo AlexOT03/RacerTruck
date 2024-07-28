@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Footer from '../layouts/Footer.astro';
-import Header from '../layouts/Header.astro';
+import Footer from '../sections/Footer.astro';
+import Header from '../sections/Header.astro';
 // this 3 lines of code are necessary to translate the elements that we need to translate i others languages
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
@@ -26,6 +26,6 @@ const t = useTranslations(lang);
             <p class="mt-4">{t('privacy.paragraph.four')}</p>
             <p class="mt-4">{t('privacy.paragraph.five')} <a href="#">{t('privacy.paragraph.five.link')}</a>.</p>
         </section>
-        <Footer title='RacerTruck' />
+        <Footer title={t('footer.title')} />
     </main>
 </Layout>

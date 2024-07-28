@@ -2,10 +2,9 @@
 import Layout from "../layouts/Layout.astro";
 import { images } from "../data/imagen-data";
 import { Image } from "astro:assets";
-import Header from "../layouts/Header.astro";
-import Footer from "../layouts/Footer.astro";
+import Footer from "../sections/Footer.astro";
 import FlipBook from "../components/Flipbook";
-import BookRead from "../components/icons/BookRead.astro";
+import BookRead from "../icons/BookRead.astro";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -29,6 +28,7 @@ if (!info) return Astro.redirect("/404", 404);
 				width={600}
 				height={700}
 				alt={info.alt}
+				loading={"eager"}
 				/>
 			  </picture>
 			</div>
@@ -66,13 +66,15 @@ if (!info) return Astro.redirect("/404", 404);
     	 	 <FlipBook client:only="react" />
     	</div>
 
-		<Footer title="RacerTruck" />
+		<Footer title={t('footer.title')} />
 	</main>
 </Layout>
 
 <script>
-  window.document.querySelector('#read-pdf-btn').addEventListener('click', () => {
-    let pdfContainer = document.querySelector('#pdf-container');
-    pdfContainer.classList.add('opacity-100');
-  });
-</script>
+	window.document.querySelector('#read-pdf-btn')?.addEventListener('click', () => {
+	  	let pdfContainer = document.querySelector('#pdf-container');
+	  	if (pdfContainer) {
+			pdfContainer.classList.add('opacity-100');
+	  	}
+	});
+</script>  

@@ -1,10 +1,11 @@
 ---
 import Flipbook from "../../components/Flipbook";
-import Footer from "../../layouts/Footer.astro";
-import Header from "../../layouts/Header.astro";
+import Footer from "../../sections/Footer.astro";
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../sections/Hero.astro";
-
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 ---
 
@@ -12,9 +13,7 @@ import Hero from "../../sections/Hero.astro";
 	<main>
 		<Hero />
         <Flipbook client:only="react"/>
-		<!-- <About class="pb-20" />
-        <Contact class="pb-20" /> -->
 
-		<Footer title='RacerTruck' />	
+		<Footer title={t('footer.title')} />
 	</main>
 </Layout>

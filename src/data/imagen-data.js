@@ -1,12 +1,13 @@
 // src/data/imageData.js
-import magazine1 from '../images/January.png';
-import magazine2 from '../images/February.png';
-import magazine3 from '../images/March.png';
-import magazine4 from '../images/April.png';
-import magazine5 from '../images/May.png';
-import magazine6 from '../images/June.png';
-import magazine7 from '../images/July.png';
-import magazine8 from '../images/August.png';
+import magazine1 from '../../public/img/January.png';
+import magazine2 from '../../public/img/February.png';
+import magazine3 from '../../public/img/March.png';
+import magazine4 from '../../public/img/April.png';
+import magazine5 from '../../public/img/May.png';
+import magazine6 from '../../public/img/June.png';
+import magazine7 from '../../public/img/July.png';
+import magazine8 from '../../public/img/August.png';
+// ../../public/img/.png
 
 export const images = [
       {
