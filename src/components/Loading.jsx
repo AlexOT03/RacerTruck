@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useTranslations } from "../i18n/utils";
-import "/public/css/Loading.css";
 
 var lang = window.location.pathname.split("/")[1];
 if (!lang || lang !== "es") lang = "en";

@@ -29,6 +29,7 @@ if (!info) return Astro.redirect("/404", 404);
 				height={700}
 				alt={info.alt}
 				loading={"eager"}
+				transition:name={`image-${info.id}`}
 				/>
 			  </picture>
 			</div>

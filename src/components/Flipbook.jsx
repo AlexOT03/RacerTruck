@@ -66,7 +66,7 @@ function FlipBook() {
 			>
                 <HTMLFlipBook width={595} height={769} showCover={true} flippingTime={800} maxShadowOpacity={0.6} onFlip={handleFlip}>
                     {[...Array(numPages).keys()].map((n) => (
-                        <Pages number={`${n + 1}`}>
+                        <Pages key={n} number={`${n + 1}`}>
                             <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
                                 <Page
                                     pageNumber={n + 1}

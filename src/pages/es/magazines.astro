@@ -25,7 +25,7 @@ const t = useTranslations(lang);
             <div class="flex flex-col justify-center items-center text-center">
                 <a href={`/es/${img.id}`}>
                 <Image
-                    class="magazine"
+                    class="magazine transition-all hover:scale-110"
                     src={img.src}
                     width={300}
                     height={400}
@@ -33,6 +33,7 @@ const t = useTranslations(lang);
                     loading={
                         index in [0, 1, 2] ? 'eager' : 'lazy'
                     }
+                    transition:name={`image-${img.id}`}
                 />
                 </a>
                 <p class="text-center p-7 uppercase text-lg font-bold">{img.date}</p>
@@ -47,42 +48,8 @@ const t = useTranslations(lang);
 </Layout>
     
 <style>
-    .magazine {
-        transition: box-shadow 0.1s, transform 0.1s;
-        max-width: 100%;
-    }
-
     .magazine:hover {
-        box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+        box-shadow: 0 0 30px #000000e6;
+		filter: saturate(1.2) brightness(1.1) contrast(1.1);
     }
 </style>
-
-<script>
-    document.querySelectorAll('.magazine').forEach(el => {
-        el.addEventListener('mousemove', (evt) => {
-            const element = el as HTMLElement;
-            const { offsetWidth: width, offsetHeight: height } = element;
-            const { offsetX, offsetY } = evt as MouseEvent;
-
-            const yRotation = ((offsetX - width / 2) / width) * 20;
-            const xRotation = ((offsetY - height / 2) / height) * 20;
-
-            element.style.transform = `
-                perspective(500px)
-                scale(1.1)
-                rotateX(${xRotation}deg)
-                rotateY(${yRotation}deg)
-            `;
-        });
-
-        el.addEventListener('mouseout', () => {
-            const element = el as HTMLElement;
-            element.style.transform = `
-                perspective(500px)
-                scale(1)
-                rotateX(0)
-                rotateY(0)
-            `;
-        });
-    });
-</script>
