@@ -9,7 +9,7 @@ export const languages = {
     es: {
       'page.month': 'Mes',
       'page.author': 'Autor',
-      'alert.description': 'Sin descripción',
+      'alert.description': 'Sin descripción disponible',
       'button.read': 'Leer ahora',
       'button.unavailable': 'No disponible',
       'nav.home': 'Inicio',
@@ -60,7 +60,7 @@ export const languages = {
     en: {
       'page.month': 'Month',
       'page.author': 'Author',
-      'alert.description': 'No description',
+      'alert.description': 'No description available',
       'button.read': 'Read now',
       'button.unavailable': 'Unavailable',
       'nav.home': 'Home',

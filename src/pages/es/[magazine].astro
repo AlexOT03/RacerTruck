@@ -17,11 +17,9 @@ const info = images.find((img) => img.id === magazine);
 if (!info) return Astro.redirect("/404", 404);
 ---
 
-<Layout title={`RacerTruck | ${info.id}`}>
-	<main class="bg-neutral-100">
-		<Header title="RacerTruck" />
-
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 mt-4 md:mt-20 px-8 max-w-screen-xl mx-auto">
+<Layout title={`RacerTruck | ${info.title}`}>
+	<main>
+		<section class="grid grid-cols-1 md:grid-cols-2 gap-x-12 mt-4 md:mt-20 px-8 max-w-screen-xl mx-auto">
 
 			<div class="flex flex-col mb-10">
 			  <picture class="mb-8 w-full relative">
@@ -39,7 +37,7 @@ if (!info) return Astro.redirect("/404", 404);
 			  	<h1 class="text-5xl mb-4">
 					<strong class="font-black">{info.title}</strong>
 					<br>
-					<span class="italic text-gray-600 text-2xl">{lang === 'es' ? ('Edición' + info.edition) : (info.edition + ' Edition')}</span>
+					<span class="italic text-gray-600 text-2xl">{lang === 'es' ? ('Edición ' + info.edition) : (info.edition + ' Edition')}</span>
 				</h1>
 			  	<p class="text-lg mb-4">
 					{
@@ -58,15 +56,23 @@ if (!info) return Astro.redirect("/404", 404);
 					<strong>{t('page.author')}:</strong>
 					<span class="font-semibold text-gray-800">{info.author}</span>
 				</p>
-			  	<a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 justify-center">
+				<button id="read-pdf-btn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 justify-center">
 					<BookRead class="w-5 h-5 mr-2" />
 					{t('button.read')}
-			  	</a>
+				  <button/>
 			</aside>
-		  </div>
-
-		<!-- <FlipBook client:only="react"/> -->
+		</section>
+		<div id="pdf-container" class="opacity-0 transition-opacity duration-500 h-fit">
+    	 	 <FlipBook client:only="react" />
+    	</div>
 
 		<Footer title="RacerTruck" />
 	</main>
 </Layout>
+
+<script>
+  window.document.querySelector('#read-pdf-btn').addEventListener('click', () => {
+    let pdfContainer = document.querySelector('#pdf-container');
+    pdfContainer.classList.add('opacity-100');
+  });
+</script>

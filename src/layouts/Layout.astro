@@ -1,4 +1,6 @@
 ---
+import Header from './Header.astro';
+
 interface Props {
 	title: string;
 }
@@ -21,6 +23,7 @@ const lang = currentLocale
 		<meta name="view-transition" content="same-origin" />
 	</head>
 	<body>
+		<Header title='RacerTruck' />
 		<slot />
 	</body>
 </html>
