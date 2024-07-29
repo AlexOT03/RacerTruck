@@ -21,7 +21,6 @@ const Pages = React.forwardRef((props, ref) => {
 
 function FlipBook() {
 
-    const [loading, setLoading] = useState(true);
 	const [numPages, setNumPages] = useState(null);
     const [initialMargin, setInitialMargin] = useState("ml-[-40%]");
 

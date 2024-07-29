@@ -8,11 +8,10 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title="RacerTruck | The Magazine of cars and his technology">
+<Layout title="The Magazine of cars and his technology">
 	<main>
 		<Hero />
         <Flipbook client:only='react'/>
-
 		<Footer title={t('footer.title')} />
 	</main>
 </Layout>
