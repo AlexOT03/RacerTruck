@@ -13,7 +13,7 @@ pdf_name = pdf_name.replace(/[-_]/g, ' ');
 
 const Pages = React.forwardRef((props, ref) => {
 	return (
-		<div className="demoPage" ref={ref}>
+		<div className="page" ref={ref}>
 			{props.children}
 		</div>
 	);
@@ -22,43 +22,30 @@ const Pages = React.forwardRef((props, ref) => {
 function FlipBook() {
 
 	const [numPages, setNumPages] = useState(null);
-    const [initialMargin, setInitialMargin] = useState("ml-[-40%]");
 
 	const onDocumentLoadSuccess = ({ numPages }) => {
 		setNumPages(numPages);
 	};
 
-    const handleFirstPageClick = () => {
-        if (initialMargin === "ml-[-40%]") {
-            setInitialMargin("ml-[7%]");
-        }
-    };
-
-    const handleFlip = (e) => {
-        if (e.data === 0) {
-            setInitialMargin("ml-[-40%]");
-        } else if (e.data === numPages - 1) {
-            setInitialMargin("ml-[55%]");
-        } else {
-            setInitialMargin("ml-[7%]");
-        }
-    };
-
 	return (
-        <section id="magazine" className="h-fit flex flex-col justify-end items-center md:justify-center scroll-mx-2 pb-20 overflow-hidden max-w-screen-xl mx-auto">
+        <section id="magazine" className="h-full flex flex-col ml- justify-end items-center md:justify-center scroll-mx-2 pb-20 overflow-hidden max-w-screen-xl mx-auto">
             <div className="text-4xl font-bold p-5">
                 <h1>{pdf_name}</h1>
             </div>
-            <div className={`h-full w-full relative transition-all ${initialMargin} duration-200`}
-				onClick={handleFirstPageClick}
-			>
-                <HTMLFlipBook width={595} height={769} showCover={true} flippingTime={800} maxShadowOpacity={0.6} onFlip={handleFlip}>
+            <HTMLFlipBook 
+                width={550}
+                height={733}
+                showCover={true} 
+                flippingTime={800} 
+                maxShadowOpacity={0.6} 
+                mobileScrollSupport={true} 
+                autoSize={true}>
                     {[...Array(numPages).keys()].map((n) => (
                         <Pages key={n} number={`${n + 1}`}>
                             <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
                                 <Page
                                     pageNumber={n + 1}
-                                    width={595}
+                                    width={550}
                                     renderAnnotationLayer={false} 
                                     renderTextLayer={false}
                                 />
@@ -66,7 +53,6 @@ function FlipBook() {
                         </Pages>
                     ))}
                 </HTMLFlipBook>
-            </div>
         </section>
 	);
 }
