@@ -21,12 +21,9 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>Cold Wheels | {title}</title>
 		<meta name="view-transition" content="same-origin" />
-		<link rel="stylesheet" href="/css/Loading.css" />
 	</head>
 	<body>
 		<Header title={t('hero.title')} />
 		<slot />
 	</body>
-</html>
-
-<script>
+</html>	
