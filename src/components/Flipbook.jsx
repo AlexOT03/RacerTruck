@@ -5,10 +5,6 @@ import pdf from "../data/pdf/Cold-Wheels-August-2024.pdf";
 import { useTranslations } from "../i18n/utils";
 import Loading from "./Loading";
 
-var lang = window.location.pathname.split("/")[1];
-if (!lang || lang !== "es") lang = "en";
-const t = useTranslations(lang);
-
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 	"pdfjs-dist/build/pdf.worker.min.mjs",
 	import.meta.url

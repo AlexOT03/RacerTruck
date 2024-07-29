@@ -9,7 +9,7 @@ const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 ---
 {
-  Object.entries(languages).map(([langPrefix, label]) => {
+  Object.entries(languages).map(([langPrefix]) => {
     if (langPrefix === lang) return
     return (
       <a href={translatePath('/', langPrefix)} class="inline-flex items-center font-medium justify-center p-3 text-sm text-white rounded-lg cursor-pointer hover:bg-red-900">
