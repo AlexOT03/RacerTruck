@@ -25,8 +25,6 @@ if (!info) return Astro.redirect("/404", 404);
 				<Image 
 				class="aspect-[389/500] h-full object-cover w-full max-w-full rounded"
 				src={info.src}
-				width={600}
-				height={700}
 				alt={info.alt}
 				loading={"eager"}
 				transition:name={`image-${info.id}`}
@@ -57,10 +55,6 @@ if (!info) return Astro.redirect("/404", 404);
 					<strong>{t('page.author')}:</strong>
 					<span class="font-semibold text-gray-800">{info.author}</span>
 				</p>
-				<button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 justify-center">
-					<BookRead class="w-5 h-5 mr-2" />
-					{t('button.read')}
-				  <button/>
 			</aside>
 		</section>
     	<FlipBook client:only="react" />

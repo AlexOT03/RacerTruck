@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Footer from '../sections/Footer.astro';
-import Flipbook from '../components/Flipbook';
 import Hero from '../sections/Hero.astro';
+import Flipbook from '../components/Flipbook';
+import Footer from '../sections/Footer.astro';
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

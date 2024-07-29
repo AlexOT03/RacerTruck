@@ -26,10 +26,6 @@ function FlipBook() {
 
 	const onDocumentLoadSuccess = ({ numPages }) => {
 		setNumPages(numPages);
-        setTimeout(()=>{
-
-            setLoading(false);
-        },1000)
 	};
 
     const handleFirstPageClick = () => {
