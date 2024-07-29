@@ -1,5 +1,6 @@
 import { useState, useCallback, forwardRef, memo } from "react";
 import HTMLFlipBook from "react-pageflip";
+import LoadingScreen from "./Loading";
 import { Document, Page, pdfjs } from "react-pdf";
 import pdf from "../data/pdf/Cold-Wheels-August-2024.pdf";
 
@@ -23,14 +24,19 @@ Pages.displayName = 'Pages';
 
 function FlipBook() {
 
+    const [loading, setLoading] = useState(true);
 	const [numPages, setNumPages] = useState(null);
 
     const onDocumentLoadSuccess = useCallback(({ numPages }) => {
         setNumPages(numPages);
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
     }, []);
 
 	return (
-        <section id="magazine" className="h-full flex flex-col ml- justify-end items-center md:justify-center scroll-mx-2 pb-20 overflow-hidden max-w-screen-xl mx-auto">
+        <section id="magazine" className="h-fit flex flex-col ml- justify-end items-center md:justify-center scroll-mx-2 pb-20 overflow-hidden max-w-screen-xl mx-auto">
+            {loading && <LoadingScreen loading={loading} />}
             <div className="text-4xl font-bold p-5">
                 <h1>{pdfName}</h1>
             </div>
