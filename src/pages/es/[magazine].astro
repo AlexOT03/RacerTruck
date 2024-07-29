@@ -4,7 +4,6 @@ import { images } from "../../data/imagen-data";
 import { Image } from "astro:assets";
 import Footer from "../../sections/Footer.astro";
 import FlipBook from "../../components/Flipbook";
-import BookRead from "../../icons/BookRead.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -18,15 +17,13 @@ if (!info) return Astro.redirect("/404", 404);
 
 <Layout title={`${info.title}`}>
 	<main>
-		<section class="grid grid-cols-1 md:grid-cols-2 gap-x-12 mt-4 md:mt-20 px-8 max-w-screen-xl mx-auto">
+		<section class="grid grid-cols-1 md:grid-cols-2 gap-x-12 mt-20 px-8 mb-20 max-w-screen-xl mx-auto">
 
-			<div class="flex flex-col mb-10">
-			  <picture class="mb-8 w-full relative">
+			<div class="flex flex-col">
+			  <picture class="mb-5 lg:mb-8 w-full relative">
 				<Image 
 				class="aspect-[389/500] h-full object-cover w-full max-w-full rounded"
 				src={info.src}
-				width={600}
-				height={700}
 				alt={info.alt}
 				loading={"eager"}
 				transition:name={`image-${info.id}`}
@@ -34,11 +31,11 @@ if (!info) return Astro.redirect("/404", 404);
 			  </picture>
 			</div>
 	  
-			<aside class="mt-10 md:mt-0">
+			<aside class="lg:mt-10 sm:mt-0">
 			  	<h1 class="text-5xl mb-4">
 					<strong class="font-black">{info.title}</strong>
 					<br>
-					<span class="italic text-gray-600 text-2xl">{lang === 'es' ? ('Edición ' + info.edition) : (info.edition + ' Edition')}</span>
+					<span class="italic text-gray-600 text-2xl">{lang === 'es' ? ('Edición' + info.edition) : (info.edition + ' Edition')}</span>
 				</h1>
 			  	<p class="text-lg mb-4">
 					{
@@ -57,25 +54,18 @@ if (!info) return Astro.redirect("/404", 404);
 					<strong>{t('page.author')}:</strong>
 					<span class="font-semibold text-gray-800">{info.author}</span>
 				</p>
-				<button id="read-pdf-btn" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 justify-center">
-					<BookRead class="w-5 h-5 mr-2" />
-					{t('button.read')}
-				  <button/>
 			</aside>
 		</section>
-		<div id="pdf-container" class="opacity-0 transition-opacity duration-500 h-fit">
-    	 	 <FlipBook client:only="react" />
-    	</div>
+    	{
+			info.id === 'cold-wheels-magazine-8' ? (
+				<FlipBook client:only="react" />
+			) : (
+				<section class="flex items-center justify-center my-20 max-w-screen-xl mx-auto px-8">
+					<span class="font-semibold uppercase text-gray-800 text-2xl">{t('magazine.status.not-yet-available')}</span>
+				</section>
+			)
+		}
 
 		<Footer title={t('footer.title')} />
 	</main>
 </Layout>
-
-<script>
-	window.document.querySelector('#read-pdf-btn')?.addEventListener('click', () => {
-	  	let pdfContainer = document.querySelector('#pdf-container');
-	  	if (pdfContainer) {
-			pdfContainer.classList.add('opacity-100');
-	  	}
-	});
-</script>  
