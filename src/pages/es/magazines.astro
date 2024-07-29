@@ -22,7 +22,7 @@ const t = useTranslations(lang);
         <section class="flex flex-wrap gap-14 justify-center items-center max-w-screen-xl mx-auto my-20">
             {images.map((img, index) => (
             <div class="flex flex-col justify-center items-center text-center">
-                <a href={`/es/${img.id}`}>
+                <a href={`/${img.id}`}>
                 <Image
                     class="magazine transition-all hover:scale-110"
                     src={img.src}
