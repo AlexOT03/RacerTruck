@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import HTMLFlipBook from "react-pageflip";
 import { Document, Page, pdfjs } from "react-pdf";
 import pdf from "../data/pdf/Cold-Wheels-August-2024.pdf";
-import Loading from "./Loading";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 	"pdfjs-dist/build/pdf.worker.min.mjs",
@@ -52,7 +51,6 @@ function FlipBook() {
 
 	return (
         <section id="magazine" className="h-fit flex flex-col justify-end items-center md:justify-center scroll-mx-2 pb-20 overflow-hidden max-w-screen-xl mx-auto">
-            {loading && <Loading loading = {loading} />}
             <div className="text-4xl font-bold p-5">
                 <h1>{pdf_name}</h1>
             </div>
