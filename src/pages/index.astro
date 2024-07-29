@@ -11,9 +11,7 @@ const t = useTranslations(lang);
 <Layout title="The Magazine of cars and his technology">
 	<main>
 		<Hero />
-		<div>
-			<Flipbook client:only='react'/>
-		</div>
+		<Flipbook client:only='react'/>
 		<Footer title={t('footer.title')} />
 	</main>
 </Layout>
