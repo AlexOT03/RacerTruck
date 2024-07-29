@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import HTMLFlipBook from "react-pageflip";
 import { Document, Page, pdfjs } from "react-pdf";
 import pdf from "../data/pdf/Cold-Wheels-August-2024.pdf";
-import { useTranslations } from "../i18n/utils";
 import Loading from "./Loading";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
