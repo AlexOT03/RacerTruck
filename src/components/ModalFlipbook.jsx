@@ -80,29 +80,29 @@ function FlipBook() {
                 <h1 className="text-white text-2xl font-bold">{pdfName}</h1>
             </div>
             <div className={`h-fit w-full pt-3 transition-all duration-200 overflow-hidden ${initialMargin} z-0`}>
-                <HTMLFlipBook 
-                        ref={flipBookRef}
-                        width={450}
-                        height={582}
-                        showCover={true} 
-                        flippingTime={500} 
-                        maxShadowOpacity={0.6} 
-                        mobileScrollSupport={true} 
-                        autoSize={true}
-                        onFlip={handleFlip}>
-                            {[...Array(numPages).keys()].map((n) => (
-                                <Pages key={n}>
-                                    <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+                <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+                    <HTMLFlipBook 
+                            ref={flipBookRef}
+                            width={450}
+                            height={582}
+                            showCover={true} 
+                            flippingTime={500} 
+                            maxShadowOpacity={0.6} 
+                            mobileScrollSupport={true} 
+                            autoSize={true}
+                            onFlip={handleFlip}>
+                                {[...Array(numPages).keys()].map((n) => (
+                                    <Pages key={n}>
                                         <Page
                                             pageNumber={n + 1}
                                             width={450}
                                             renderAnnotationLayer={false} 
-                                            renderTextLayer={false}
+                                            renderTextLayer={false} 
                                         />
-                                    </Document>
-                                </Pages>
-                            ))}
-                </HTMLFlipBook>
+                                    </Pages>
+                                ))}
+                    </HTMLFlipBook>
+                </Document>
             </div>
             <div className="flex flex-col items-center pt-2">
                 <div className="inline-flex items-center">

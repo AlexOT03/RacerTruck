@@ -1,6 +1,5 @@
 import { useState, useCallback, forwardRef, memo, useRef, useEffect } from "react";
 import HTMLFlipBook from "react-pageflip";
-import LoadingScreen from "./Loading";
 import { Document, Page, pdfjs } from "react-pdf";
 import pdf from "../data/pdf/Cold-Wheels-August-2024.pdf";
 import { useTranslations } from "../i18n/utils";
@@ -29,7 +28,6 @@ Pages.displayName = 'Pages';
 
 function FlipBook() {
 
-    const [loading, setLoading] = useState(true);
 	const [numPages, setNumPages] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [initialMargin, setInitialMargin] = useState("lg:ml-[-40%]");
@@ -37,9 +35,6 @@ function FlipBook() {
 
     const onDocumentLoadSuccess = useCallback(({ numPages }) => {
         setNumPages(numPages);
-        setTimeout(() => {
-            setLoading(false);
-        }, 1000);
     }, []);
 
     const handleFlip = (e) => {
@@ -81,35 +76,35 @@ function FlipBook() {
     }, [handleKeyDown]);
 
 	return (
-        <section id="magazine" className="h-fit flex flex-col justify-end items-center md:justify-center scroll-mx-2 pb-20 overflow-hidden max-w-screen-xl mx-auto">
-            {loading && <LoadingScreen loading={loading} />}
+        <section id="magazine" className="h-fit flex flex-col justify-end items-center md:justify-center pb-20 max-w-screen-xl mx-auto">
             <div className="text-4xl text-center font-bold">
                 <h1>{pdfName}</h1>
             </div>
             <div className={`h-full w-full m-0 lg:px-20 lg:py-10 transition-all ml-0 ${initialMargin} duration-200 overflow-hidden`}>
-                <HTMLFlipBook 
-                    ref={flipBookRef}
-                    width={550}
-                    height={711}
-                    showCover={true} 
-                    flippingTime={500} 
-                    maxShadowOpacity={0.6} 
-                    mobileScrollSupport={true} 
-                    autoSize={true}
-                    onFlip={handleFlip}>
-                        {[...Array(numPages).keys()].map((n) => (
-                            <Pages key={n}>
-                                <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+                <Document file={pdf} onLoadSuccess={onDocumentLoadSuccess}>
+                    <HTMLFlipBook 
+                        ref={flipBookRef}
+                        width={550}
+                        height={711}
+                        showCover={true} 
+                        flippingTime={500} 
+                        maxShadowOpacity={0.6} 
+                        mobileScrollSupport={true} 
+                        autoSize={true}
+                        onFlip={handleFlip}>
+                            {[...Array(numPages).keys()].map((n) => (
+                                <Pages key={n}>
                                     <Page
                                         pageNumber={n + 1}
                                         width={550}
                                         renderAnnotationLayer={false} 
                                         renderTextLayer={false}
+                                        className={` resize`}
                                     />
-                                </Document>
-                            </Pages>
-                        ))}
-                </HTMLFlipBook>
+                                </Pages>
+                            ))}
+                    </HTMLFlipBook>
+                </Document>
             </div>
             <div className="flex flex-col items-center">
                 <div className="inline-flex items-center mt-2 xs:mt-0">
