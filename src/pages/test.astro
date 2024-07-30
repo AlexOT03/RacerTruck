@@ -1,12 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import FlipBook from "../components/Flipbook";
+import FlipBook from "../components/ModalFlipbook";
 ---
 
 <Layout title="Test">
-	<main>
-        <dialog class="flipbook-dialog items-center justify-center bg-transparent px-4 text-2xl sm:px-0">
-            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center inline-flex items-center p-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+	<main class="flex items-center justify-center">
+        <dialog class="flipbook-dialog items-center justify-center bg-transparent px-4 text-2xl sm:px-0 w-full h-auto">
+			<FlipBook client:only="react" />
+            <button type="button" class="fixed right-7 top-7 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center inline-flex items-center p-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/></svg>
             </button>
         </dialog>
@@ -19,7 +20,9 @@ import FlipBook from "../components/Flipbook";
 
 <style>
 	.flipbook-dialog[open]::backdrop {
-		background-color: #000000b3;
+		/* background-color: #000000b3; */
+		background: rgb(0,0,0);
+background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(255,255,255,0) 100%);
 		animation-name: join-anim;
 		animation-duration: 200ms;
 		animation-fill-mode: forwards;
