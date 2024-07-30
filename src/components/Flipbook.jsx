@@ -86,7 +86,7 @@ function FlipBook() {
             <div className="text-4xl text-center font-bold">
                 <h1>{pdfName}</h1>
             </div>
-            <div className={`h-full w-full m-0 lg:px-20 py-10 transition-all ml-0 ${initialMargin} duration-200 overflow-hidden`}>
+            <div className={`h-full w-full m-0 lg:px-20 lg:py-10 transition-all ml-0 ${initialMargin} duration-200 overflow-hidden`}>
                 <HTMLFlipBook 
                     ref={flipBookRef}
                     width={550}
