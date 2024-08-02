@@ -14,7 +14,7 @@ const t = useTranslations(lang);
 		<Hero />
 		<Flipbook client:only='react'/>
 		<Footer title={t('footer.title')} />
-		<button id="backToTopButton" class="back-to-top-button fixed bottom-5 right-5 p-3 cursor-pointer bg-red-500 text-white rounded-md transition hover:scale-110 focus:scale-75">
+		<button id="backToTopButton" class="back-to-top-button fixed bottom-5 right-5 p-3 cursor-pointer bg-red-500 text-white rounded-md transition hover:scale-110">
 			<UpArrow class="w-6 h-6" />
 		</button>
 	</main>
@@ -31,23 +31,20 @@ document.addEventListener("DOMContentLoaded", function() {
     var offset = 300;
     const backToTopButton = document.getElementById("backToTopButton");
 
-    if (backToTopButton) {
-        backToTopButton.addEventListener("click", function () {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-            });
+    backToTopButton?.addEventListener("click", function () {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
         });
+    });
 
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > offset) {
-                backToTopButton.style.display = "block";
-            } else {
-                backToTopButton.style.display = "none";
-            }
-        });
-    } else {
-        console.error("Elemento con ID 'backToTopButton' no encontrado.");
-    }
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > offset) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    });
 });
+
 </script>
