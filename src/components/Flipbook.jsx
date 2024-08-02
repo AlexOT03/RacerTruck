@@ -13,8 +13,12 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 	import.meta.url
 ).toString();
 
-
-let pdfName = pdf.split("/").pop().replace(".pdf", "").replace(/[-_]/g, ' ').replace(/[.EjtfBa73]/g, '');
+function procesarString(input) {
+    let partes = input.split('/');
+    let nombreArchivo = partes[partes.length - 1];
+    return nombreArchivo.split('.pdf')[0].replace(/[-_]/g, ' ');
+}
+let pdfName = procesarString(pdf);
 
 const Pages = memo(
     forwardRef((props, ref) => (
@@ -76,7 +80,7 @@ function FlipBook() {
     }, [handleKeyDown]);
 
 	return (
-        <section id="magazine" className="h-fit flex flex-col justify-end items-center md:justify-center pb-20 max-w-screen-xl mx-auto">
+        <section id="magazine" className="h-fit flex flex-col justify-end items-center md:justify-center pb-20 max-w-screen-xl mx-auto overflow-hidden">
             <div className="text-4xl text-center font-bold">
                 <h1>{pdfName}</h1>
             </div>
