@@ -36,7 +36,11 @@ const t = useTranslations(lang);
                                 }
                             />
                         </a>
-                        <p class="text-center p-6 uppercase text-base">{mag.month} {mag.year} <Badge text={mag.status.title} status={mag.status.value} /></p>
+                        <div class="p-6 flex flex-col items-center justify-center gap-2">
+                            <Badge text={mag.status.title} status={mag.status.value} />
+                            <p class="text-center uppercase text-base">{t('flipbook.title')} {mag.month} {mag.year}</p>
+                        </div>
+                        
                     </div>
                 ))
             }

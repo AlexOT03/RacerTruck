@@ -1,0 +1,29 @@
+---
+import InfoCard from '../components/InfoCard.astro';
+import Book from '../icons/Book.astro';
+import MapPins from '../icons/MapPins.astro';
+import MapSearch from '../icons/MapSearch.astro';
+import Facebook from '../icons/Facebook.astro';
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="max-w-screen-xl mx-auto my-20 px-2 flex flex-row max-sm:flex-col gap-6 items-center justify-center">
+    <InfoCard >
+        <Book slot="icon" class="w-8 h-8" />
+        <p slot="text" class="text-center">{t('infocards.card.one.text')}</p>
+    </InfoCard>
+    <InfoCard >
+        <MapPins slot="icon" class="w-8 h-8" />
+        <p slot="text" class="text-center">{t('infocards.card.two.text')}</p>
+    </InfoCard>
+    <InfoCard >
+        <MapSearch slot="icon" class="w-8 h-8" />
+        <p slot="text" class="text-center">{t('infocards.card.three.text')}</p>
+    </InfoCard>
+    <InfoCard >
+        <Facebook slot="icon" class="w-8 h-8" />
+        <p slot="text" class="text-center">{t('infocards.card.four.text')}</p>
+    </InfoCard>
+</section>
