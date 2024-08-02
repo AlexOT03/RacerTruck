@@ -4,7 +4,6 @@ import Hero from '../sections/Hero.astro';
 import Flipbook from '../components/Flipbook';
 import Footer from '../sections/Footer.astro';
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import UpArrow from '../icons/UpArrow.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -14,37 +13,5 @@ const t = useTranslations(lang);
 		<Hero />
 		<Flipbook client:only='react'/>
 		<Footer title={t('footer.title')} />
-		<button id="backToTopButton" class="back-to-top-button fixed bottom-5 right-5 p-3 cursor-pointer bg-red-500 text-white rounded-md transition hover:scale-110">
-			<UpArrow class="w-6 h-6" />
-		</button>
 	</main>
 </Layout>
-
-<style>
-	.back-to-top-button {
-		display: none;
-	}
-</style>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    var offset = 300;
-    const backToTopButton = document.getElementById("backToTopButton");
-
-    backToTopButton?.addEventListener("click", function () {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    });
-
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > offset) {
-            backToTopButton.style.display = "block";
-        } else {
-            backToTopButton.style.display = "none";
-        }
-    });
-});
-
-</script>
