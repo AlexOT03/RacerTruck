@@ -3,6 +3,7 @@ import HTMLFlipBook from "react-pageflip";
 import { Document, Page, pdfjs } from "react-pdf";
 import pdf from "../data/pdf/Cold-Wheels-August-2024.pdf";
 import { useTranslations } from "../i18n/utils";
+import { c } from "../../dist/_astro/index.DJO9vBfz";
 
 var lang = window.location.pathname.split("/")[1];
 if (!lang || lang !== "es") lang = "en";
@@ -13,8 +14,13 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 	import.meta.url
 ).toString();
 
+function procesarString(input) {
+    let partes = input.split('/');
+    let nombreArchivo = partes[partes.length - 1];
+    return nombreArchivo.split('.pdf')[0].replace(/[-_]/g, ' ');
+}
 
-let pdfName = pdf.split("/").pop().replace(".pdf", "").replace(/[-_]/g, ' ').replace(/[.EjtfBa73]/g, '');
+let pdfName = procesarString(pdf);
 
 const Pages = memo(
     forwardRef((props, ref) => (
