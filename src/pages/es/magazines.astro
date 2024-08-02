@@ -2,7 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../sections/Footer.astro';
 import { Image } from "astro:assets";
-import { images } from '../../data/imagen-data'
+import { magazines } from '../../data/magazines';
+import Badge from '../../components/Badge.astro';
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -20,25 +21,25 @@ const t = useTranslations(lang);
         </section>
 
         <section class="flex flex-wrap gap-14 justify-center items-center max-w-screen-xl mx-auto my-20">
-            {images.map((img, index) => (
-            <div class="flex flex-col justify-center items-center text-center">
-                <a href={`/${img.id}`}>
-                <Image
-                    class="magazine transition-all hover:scale-110"
-                    src={img.src}
-                    width={300}
-                    height={400}
-                    alt={img.alt}
-                    loading={
-                        index in [0, 1, 2] ? 'eager' : 'lazy'
-                    }
-                    transition:name={`image-${img.id}`}
-                />
-                </a>
-                <p class="text-center p-7 uppercase text-lg font-bold">{img.date}</p>
-            </div>
-
-            ))}
+            {
+                magazines.map((mag, index) => (
+                    <div class="flex flex-col justify-center items-center text-center">
+                        <a href={`/es/${mag.id}`}>
+                            <Image
+                                class="magazine transition-all hover:scale-110"
+                                src={mag.image.src}
+                                width={300}
+                                height={400}
+                                alt={mag.image.alt}
+                                loading={
+                                    index in [0, 1, 2] ? 'eager' : 'lazy'
+                                }
+                            />
+                        </a>
+                        <p class="text-center p-6 uppercase text-base">{mag.month} {mag.year} <Badge text={mag.status.title} status={mag.status.value} /></p>
+                    </div>
+                ))
+            }
         </section>
 
 		<Footer title={t('footer.title')} />

@@ -16,7 +16,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 function procesarString(input) {
     let partes = input.split('/');
     let nombreArchivo = partes[partes.length - 1];
-    return nombreArchivo.split('.pdf')[0].replace(/[-_]/g, ' ');
+    return nombreArchivo.split('.')[0].replace(/[-_]/g, ' ');
 }
 let pdfName = procesarString(pdf);
 

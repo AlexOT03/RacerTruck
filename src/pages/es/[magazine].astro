@@ -3,39 +3,44 @@ import Layout from "../../layouts/Layout.astro";
 import { images } from "../../data/imagen-data";
 import { Image } from "astro:assets";
 import Footer from "../../sections/Footer.astro";
-import FlipBook from "../../components/Flipbook";
+import FlipBook from "../../components/ModalFlipbook";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import BookRead from "../../icons/BookRead.astro";
+import { magazines } from "../../data/magazines";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const { magazine } = Astro.params;
 
-const info = images.find((img) => img.id === magazine);
+const info = magazines.find((obj) => obj.id === magazine);
 
 if (!info) return Astro.redirect("/404", 404);
 ---
 
-<Layout title={`${info.title}`}>
+<Layout title={`${info.name}`}>
 	<main>
 		<section class="grid grid-cols-1 md:grid-cols-2 gap-x-12 mt-20 px-8 mb-20 max-w-screen-xl mx-auto">
 
 			<div class="flex flex-col">
-			  <picture class="mb-5 lg:mb-8 w-full relative">
-				<Image 
-				class="aspect-[389/500] h-full object-cover w-full max-w-full rounded"
-				src={info.src}
-				alt={info.alt}
-				loading={"eager"}
-				transition:name={`image-${info.id}`}
-				/>
-			  </picture>
+			  	<picture class="mb-5 lg:mb-8 w-full relative">
+					<Image 
+						class="aspect-[389/500] h-full object-cover w-full max-w-full rounded"
+						src={info.image.src}
+						width={300}
+						height={400}
+						alt={info.image.alt}
+						loading={"eager"}
+					/>
+			  	</picture>
 			</div>
 	  
 			<aside class="lg:mt-10 sm:mt-0">
 			  	<h1 class="text-5xl mb-4">
-					<strong class="font-black">{info.title}</strong>
+					<strong class="font-black">{info.title}</strong>: <span class="font-semibold text-gray-900">{info.name}</span>
 					<br>
-					<span class="italic text-gray-600 text-2xl">{lang === 'es' ? ('Edición ' + info.edition) : (info.edition + ' Edition')}</span>
+					<span class="italic text-gray-600 text-2xl">
+						Edición {info.edition}
+					</span>
 				</h1>
 			  	<p class="text-lg mb-4">
 					{
@@ -47,25 +52,72 @@ if (!info) return Astro.redirect("/404", 404);
 					}
 				</p>
 			  	<p class="">
-					<strong>{t('page.month')}:</strong> 
-					<span class="font-semibold text-gray-800">{info.date}</span>
+					<strong>{t('page.date')}:</strong> 
+					<span class="font-semibold text-gray-800">{info.month} {info.year}</span>
 				</p>
 			  	<p class="pb-4">
 					<strong>{t('page.author')}:</strong>
 					<span class="font-semibold text-gray-800">{info.author}</span>
 				</p>
+				<button type="button" id="read-magazine" class="items-center inline-flex focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+					<BookRead class="w-5 h-5 me-2" />
+					{t('button.read')}
+				</button>
 			</aside>
 		</section>
-    	{
-			info.id === 'cold-wheels-magazine-8' ? (
-				<FlipBook client:only="react" />
-			) : (
-				<section class="flex flex-col items-center justify-center my-20 max-w-screen-xl mx-auto px-8">
-					<p class="block font-semibold uppercase text-gray-800 text-2xl">{t('magazine.error.not-found')}</p>
-				</section>
-			)
-		}
 
 		<Footer title={t('footer.title')} />
+		
+		<dialog class="flipbook-dialog items-center justify-center bg-transparent px-4 text-2xl sm:px-0 w-full h-auto">
+			{
+				info.status.value ? (
+					<FlipBook client:only="react" />
+				) : (
+					<section class="flex flex-col items-center justify-center my-20 max-w-screen-xl mx-auto px-8">
+						<p class="block font-semibold uppercase text-white text-2xl">{t('magazine.error.not-found')}</p>
+					</section>
+				)
+			}
+            <button type="button" id="close-modal" class="fixed right-7 top-7 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/></svg>
+            </button>
+        </dialog>
 	</main>
 </Layout>
+
+<style>
+	.flipbook-dialog[open]::backdrop {
+		/* background-color: #000000b3; */
+		background: rgb(0,0,0);
+background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(255,255,255,0) 100%);
+		animation-name: join-anim;
+		animation-duration: 200ms;
+		animation-fill-mode: forwards;
+		animation-timing-function: ease-in-out;
+	}
+
+	@keyframes join-anim {
+		from {
+			background-color: #00000000;
+		}
+		to {
+			background-color: #000000b3;
+		}
+	}
+</style>
+
+<script>
+	const dialog = document.querySelector("dialog");
+	const showButton = document.querySelector("#read-magazine");
+	const closeButton = document.querySelector("#close-modal");
+
+	// "Show the dialog" button opens the dialog modally
+	showButton?.addEventListener("click", () => {
+		dialog?.showModal();
+	});
+
+	// "Close" button closes the dialog
+	closeButton?.addEventListener("click", () => {
+		dialog?.close();
+	});
+</script>

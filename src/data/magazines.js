@@ -5,12 +5,17 @@ export const magazines = [
             src: '/img/January.webp',
             alt: "Magazine 1 January",
         },
-        name: "Cold Wheels: The Future of Automotive Excellence",
+        title: "Cold Wheels",
+        name: "The Future of Automotive Excellence",
         description: "",
         edition: "Maserati",
         month: "January",
         year: "2024",
         author: "RacerTruck Team",
+        status: {
+            title: "not available",
+            value: false
+        },
         file: "/pdf/Cold-Wheels-August-2024.pdf"
     },
     {
@@ -19,12 +24,17 @@ export const magazines = [
             src: '/img/February.webp',
             alt: "Magazine 2 February",
         },
-        name: "Cold Wheels: Exploring the World of Customization, Urban Classics and the Road Monster",
+        title: "Cold Wheels",
+        name: "Exploring the World of Customization, Urban Classics and the Road Monster",
         description: "",
         edition: "Porsche",
         month: "February",
         year: "2024",
         author: "RacerTruck Team",
+        status: {
+            title: "not available",
+            value: false
+        },
         file: "/pdf/Cold-Wheels-August-2024.pdf"
     },
     {
@@ -33,12 +43,17 @@ export const magazines = [
             src: '/img/March.webp',
             alt: "Magazine 3 March",
         },
-        name: "Cold Wheels: The Future on Four Wheels",
+        title: "Cold Wheels",
+        name: "The Future on Four Wheels",
         description: "",
         edition: "BMW",
         month: "March",
         year: "2024",
         author: "RacerTruck Team",
+        status: {
+            title: "not available",
+            value: false
+        },
         file: "/pdf/Cold-Wheels-August-2024.pdf"
     },
     {
@@ -47,12 +62,17 @@ export const magazines = [
             src: '/img/April.webp',
             alt: "Magazine 4 April",
         },
-        name: "Cold Wheels: Exploring the World of Customization, Urban Classics and the Road Monster",
+        title: "Cold Wheels",
+        name: "Exploring the World of Customization, Urban Classics and the Road Monster",
         description: "",
         edition: "BMW",
         month: "April",
         year: "2024",
         author: "RacerTruck Team",
+        status: {
+            title: "not available",
+            value: false
+        },
         file: "/pdf/Cold-Wheels-August-2024.pdf"
     },
     {
@@ -61,12 +81,17 @@ export const magazines = [
             src: '/img/May.webp',
             alt: "Magazine 5 May",
         },
-        name: "Cold Wheels: The Rise of Winter Racing",
+        title: "Cold Wheels",
+        name: "The Rise of Winter Racing",
         description: "",
         edition: "Subaru",
         month: "May",
         year: "2024",
         author: "RacerTruck Team",
+        status: {
+            title: "not available",
+            value: false
+        },
         file: "/pdf/Cold-Wheels-August-2024.pdf"
     },
     {
@@ -75,12 +100,17 @@ export const magazines = [
             src: '/img/June.webp',
             alt: "Magazine 6 June",
         },
-        name: "Cold Wheels: Discovering the Car of Tomorrow",
+        title: "Cold Wheels",
+        name: "Discovering the Car of Tomorrow",
         description: "",
         edition: "Toyota",
         month: "June",
         year: "2024",
         author: "RacerTruck Team",
+        status: {
+            title: "not available",
+            value: false
+        },
         file: "/pdf/Cold-Wheels-August-2024.pdf"
     },
     {
@@ -89,12 +119,17 @@ export const magazines = [
             src: '/img/July.webp',
             alt: "Magazine 7 July",
         },
-        name: "Cold Wheels: Revealing the Future of Racing",
+        title: "Cold Wheels",
+        name: "Revealing the Future of Racing",
         description: "",
         edition: "Lexus",
         month: "July",
         year: "2024",
         author: "RacerTruck Team",
+        status: {
+            title: "not available",
+            value: false
+        },
         file: "/pdf/Cold-Wheels-August-2024.pdf"
     },
     {
@@ -103,12 +138,17 @@ export const magazines = [
             src: '/img/August.webp',
             alt: "Magazine 8 August",
         },
-        name: "Cold Wheels: A Tour of Automotive Excellence",
+        title: "Cold Wheels",
+        name: "A Tour of Automotive Excellence",
         description: "Discover the latest news from the automotive world. Among the articles, the highlights include the presentation of the brand new Red Bull Racing car, the RB20, and details about a lost remote-controlled vehicle. In addition, there is an in-depth look at issues such as the turbocharger and its influence on engine performance, as well as profiles of leading figures in the automotive industry.",
         edition: "Porsche",
         month: "August",
         year: "2024",
         author: "RacerTruck Team",
+        status: {
+            title: "available",
+            value: true
+        },
         file: "/pdf/Cold-Wheels-August-2024.pdf"
     }
 ];
