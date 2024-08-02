@@ -22,9 +22,3 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
-
-# bun files
-.bun
-.lockb
-.lockb.db
-.lock

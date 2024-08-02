@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Footer from '../sections/Footer.astro';
-import { magazines } from "../data/magazines";
-import { Image } from "astro:assets"
+import { Image } from "astro:assets";
+import { images } from '../data/imagen-data'
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -20,22 +20,22 @@ const t = useTranslations(lang);
         </section>
 
         <section class="flex flex-wrap gap-14 justify-center items-center max-w-screen-xl mx-auto my-20">
-            {magazines.map((magazine, index) => (
+            {images.map((img, index) => (
             <div class="flex flex-col justify-center items-center text-center">
-                <a href={`/${magazine.id}`}>
-                    <Image
-                        class="magazine transition-all hover:scale-110"
-                        src={magazine.image.src}
-                        width={300}
-                        height={400}
-                        alt={magazine.image.alt}
-                        loading={
-                            index in [0, 1, 2] ? 'eager' : 'lazy'
-                        }
-                        transition:name={`image-${magazine.id}`}
-                    />
+                <a href={`/${img.id}`}>
+                <Image
+                    class="magazine transition-all hover:scale-110"
+                    src={img.src}
+                    width={300}
+                    height={400}
+                    alt={img.alt}
+                    loading={
+                        index in [0, 1, 2] ? 'eager' : 'lazy'
+                    }
+                    transition:name={`image-${img.id}`}
+                />
                 </a>
-                <p class="text-center px-0 py-5 uppercase text-lg font-bold">{magazine.month} {magazine.year}</p>
+                <p class="text-center p-7 uppercase text-lg font-bold">{img.date}</p>
             </div>
 
             ))}

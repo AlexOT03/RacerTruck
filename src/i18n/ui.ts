@@ -7,7 +7,6 @@ export const languages = {
   
   export const ui = {
     es: {
-      'page.date': 'Fecha',
       'page.month': 'Mes',
       'page.author': 'Autor',
       'alert.description': 'Sin descripción disponible',
@@ -70,7 +69,6 @@ export const languages = {
       'footer.copyright': 'Todos los derechos reservados.'
     },
     en: {
-      'page.date': 'Date',
       'page.month': 'Month',
       'page.author': 'Author',
       'alert.description': 'No description available',
