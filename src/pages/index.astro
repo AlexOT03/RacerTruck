@@ -1,10 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../sections/Hero.astro';
-import Flipbook from '../components/Flipbook';
 import Footer from '../sections/Footer.astro';
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import InfoCards from '../sections/InfoCards.astro';
+import Showcase from '../sections/Showcase.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -13,7 +13,7 @@ const t = useTranslations(lang);
 	<main>
 		<Hero />
 		<InfoCards />
-		<Flipbook client:only='react'/>
+		<Showcase />
 		<Footer title={t('footer.title')} />
 	</main>
 </Layout>

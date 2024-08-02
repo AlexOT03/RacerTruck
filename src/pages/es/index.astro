@@ -1,9 +1,10 @@
 ---
-import Flipbook from "../../components/Flipbook";
 import Footer from "../../sections/Footer.astro";
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../sections/Hero.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import InfoCards from "../../sections/InfoCards.astro";
+import Showcase from "../../sections/Showcase.astro";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -11,7 +12,8 @@ const t = useTranslations(lang);
 <Layout title="La revista de coches y su tecnología">
 	<main>
 		<Hero />
-        <Flipbook client:only="react"/>
+		<InfoCards />
+		<Showcase />
 		<Footer title={t('footer.title')} />
 	</main>
 </Layout>

@@ -1,9 +1,10 @@
 ---
+import FlipBook from "../components/Flipbook";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section class="max-w-screen-xl">
-
+<section id="magazine" class="h-fit flex flex-col items-center justify-center pb-20 max-w-screen-xl mx-auto overflow-hidden">
+    <FlipBook client:only="react" />
 </section>
