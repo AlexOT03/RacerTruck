@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../sections/Hero.astro';
 import Footer from '../sections/Footer.astro';
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import InfoCards from '../sections/InfoCards.astro';
 import Showcase from '../sections/Showcase.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -12,8 +11,7 @@ const t = useTranslations(lang);
 <Layout title="The Magazine of cars and his technology">
 	<main>
 		<Hero />
-		<InfoCards />
 		<Showcase />
-		<Footer title={t('footer.title')} />
+		<Footer />
 	</main>
 </Layout>

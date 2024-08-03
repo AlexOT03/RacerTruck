@@ -1,13 +1,9 @@
 ---
-interface Props {
-	title: string;
-}
-
-const { title } = Astro.props;
 import Facebook from '../icons/Facebook.astro';
 import GitHub from '../icons/GitHub.astro';
 // this 3 lines of code are necessary to translate the elements that we need to translate i others languages
 import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import ColdWheels from '../icons/ColdWheels.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 // this is only used for the url path redirection
@@ -18,9 +14,8 @@ const translatePath = useTranslatedPath(lang);
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
-              <div class="flex items-center">
-                  <img src="/logo.svg" loading="lazy" class="h-8 me-3" alt="FlowBite Logo" />
-                  <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{title}</span>
+              <div class="flex items-center max-sm:justify-center">
+                  <ColdWheels class="h-[250px] w-[250px] sm:-mt-[80px]" />
               </div>
           </div>
           <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
@@ -50,7 +45,7 @@ const translatePath = useTranslatedPath(lang);
       </div>
       <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div class="sm:flex sm:items-center sm:justify-between">
-          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="/" class="hover:underline">{title}™</a>. {t('footer.copyright')}
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="/" class="hover:underline">Cold Wheels™</a>. {t('footer.copyright')}
           </span>
           <div class="flex mt-4 sm:justify-center sm:mt-0">
               <a href="https://www.facebook.com/joel.chablenarvaez" target="_blank" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
